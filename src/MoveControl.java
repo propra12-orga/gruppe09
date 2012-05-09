@@ -17,15 +17,19 @@ public class MoveControl extends JPanel implements KeyListener {
 		int keyCode = evt.getKeyCode();
 		if (keyCode == KeyEvent.VK_LEFT) {
 			// Hier Code einfügen um Spielfigur nach links zu bewegen
+			System.out.println("Links");
 		}
 		if (keyCode == KeyEvent.VK_RIGHT) {
 			// Hier Code einfügen um Spielfigur nach rechts zu bewegen
+			System.out.println("Rechts");
 		}
 		if (keyCode == KeyEvent.VK_UP) {
 			// Hier Code einfügen um Spielfigur nach oben zu bewegen
+			System.out.println("Oben");
 		}
 		if (keyCode == KeyEvent.VK_DOWN) {
 			// Hier Code einfügen um Spielfigur nach unten zu bewegen
+			System.out.println("Unten");
 		}
 
 	}
