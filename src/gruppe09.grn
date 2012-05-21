@@ -78,16 +78,16 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=gruppe09/src<bomberman{Figure.java[Figure"/>
-      <targetType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
+      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
+      <sourceType="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
+      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
-      <sourceType="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
-      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <targetType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
       <bendpoints>
       </bendpoints>
    </relationship>
