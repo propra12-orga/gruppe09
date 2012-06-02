@@ -3,7 +3,9 @@
  */
 package bomberman;
 
-public class Playground {
+import javax.swing.JFrame;
+
+public class Playground extends JFrame {
     public Playground(int x1, int y1, int x2, int y2) {
 
     }

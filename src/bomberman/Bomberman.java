@@ -1,32 +1,33 @@
+/**
+ * Last Author : Dirk Date: 02/06/12 Last Action: GUI statt Frame. Figur wird erst angezeigt, wenn GUI die Funktion starteSingleplayer() aufruft.
+ */
 package bomberman;
 
 import java.awt.Container;
-import java.awt.Image;
-
-import javax.swing.JFrame;
-
-/**
- * Last Author : Dirk Date: 21/05/12 Last Action: EXIT_ON_CLOSE und bewegbare
- * Figur hinzugefügt
- */
 
 public class Bomberman {
     static Figure figure1;
-    Image picOfFigure1;
+    static Gui gui;
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        JFrame frame = new JFrame();
-        frame.setTitle("Bomberman");
-        frame.setSize(300, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui = new Gui();
+        // gui.setTitle("Bomberman");
+        // gui.setSize(300, 200);
+        // gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.setVisible(true);
         initalize();
 
         figure1 = new Figure(50, 50);
-        Container contentPane = frame.getContentPane();
+        Container contentPane = gui.getContentPane();
         contentPane.add(new MoveControl(figure1));
-        frame.add(figure1);
-        frame.setVisible(true);
+
+    }
+
+    public static void starteSingleplayer() {
+        gui.setVisible(false);
+        gui.update(gui.getGraphics());
+        gui.add(figure1, 0);
+        gui.setVisible(true);
     }
 
     public static void initalize() {

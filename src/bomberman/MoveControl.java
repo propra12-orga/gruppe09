@@ -1,8 +1,7 @@
-package bomberman;
-
 /**
  * Last Author : Dirk Date: 21/05/12 Last Action: Steuerung für die Figur hinzugefügt
  */
+package bomberman;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
