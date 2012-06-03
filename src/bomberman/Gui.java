@@ -1,6 +1,5 @@
 /**
- * Last Author : Dirk Date: 02/06/12 Last Action: Automatisch erzeugten Quelltext auf das reduziert, was wir brauchen.
- *  Anweisungen sortiert und für die Übersichtlichkeit Imports hinzugefügt.
+ * Last Author : Lukas Date: 03/06/12 Last Action: Schriftzug Bomberman nach unten gesetzt. Es wird jetzt ein Spielfeld generiert 
  */
 package bomberman;
 
@@ -9,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -20,159 +20,168 @@ import javax.swing.WindowConstants;
 
 public class Gui extends JFrame {
 
-    // Variablen Deklarationen
-    private JMenuBar menuBar;
-    private JMenu fileMenu;
-    private JMenuItem singleplayerMenuItem;
-    private JMenuItem multiplayerMenuItem;
-    private JMenuItem optionsMenuItem;
-    private JMenuItem highscoreMenuItem;
-    private JMenuItem exitMenuItem;
-    private JMenu helpMenu;
-    private JMenuItem contentsMenuItem;
-    private JMenuItem aboutMenuItem;
+	// Variablen Deklarationen
+	private JMenuBar menuBar;
+	private JMenu fileMenu;
+	private JMenuItem singleplayerMenuItem;
+	private JMenuItem multiplayerMenuItem;
+	private JMenuItem optionsMenuItem;
+	private JMenuItem highscoreMenuItem;
+	private JMenuItem exitMenuItem;
+	private JMenu helpMenu;
+	private JMenuItem contentsMenuItem;
+	private JMenuItem aboutMenuItem;
 
-    private JLabel bombermanLetters;
-    private JPanel backgroundPanel;
+	private JLabel bombermanLetters;
 
-    // Ende der Variablen Deklarationen
-    public Gui() {
-        setSize(700, 400);
-        initComponents();
-    }
+	private JPanel backgroundPanel;
 
-    private void initComponents() {
+	// Ende der Variablen Deklarationen
+	public Gui() {
+		setSize(455, 455);
+		initComponents();
+	}
 
-        menuBar = new JMenuBar();
-        fileMenu = new JMenu();
-        singleplayerMenuItem = new JMenuItem();
-        multiplayerMenuItem = new JMenuItem();
-        optionsMenuItem = new JMenuItem();
-        highscoreMenuItem = new JMenuItem();
-        exitMenuItem = new JMenuItem();
-        helpMenu = new JMenu();
-        contentsMenuItem = new JMenuItem();
-        aboutMenuItem = new JMenuItem();
+	private void initComponents() {
 
-        bombermanLetters = new JLabel();
-        backgroundPanel = new JPanel();
+		menuBar = new JMenuBar();
+		fileMenu = new JMenu();
+		singleplayerMenuItem = new JMenuItem();
+		multiplayerMenuItem = new JMenuItem();
+		optionsMenuItem = new JMenuItem();
+		highscoreMenuItem = new JMenuItem();
+		exitMenuItem = new JMenuItem();
+		helpMenu = new JMenu();
+		contentsMenuItem = new JMenuItem();
+		aboutMenuItem = new JMenuItem();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+		bombermanLetters = new JLabel();
+		backgroundPanel = new JPanel();
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("Menu");
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setResizable(false);
 
-        singleplayerMenuItem.setMnemonic('s');
-        singleplayerMenuItem.setText("Singleplayer");
-        singleplayerMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                singleplayerMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(singleplayerMenuItem);
+		fileMenu.setMnemonic('f');
+		fileMenu.setText("Menu");
 
-        multiplayerMenuItem.setMnemonic('p');
-        multiplayerMenuItem.setText("Multiplayer");
-        multiplayerMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                multiplayerMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(multiplayerMenuItem);
+		singleplayerMenuItem.setMnemonic('s');
+		singleplayerMenuItem.setText("Singleplayer");
+		singleplayerMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				singleplayerMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(singleplayerMenuItem);
 
-        optionsMenuItem.setMnemonic('o');
-        optionsMenuItem.setText("Options");
-        optionsMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                optionsMenuItem1ActionPerformed(evt);
-            }
-        });
-        fileMenu.add(optionsMenuItem);
+		multiplayerMenuItem.setMnemonic('p');
+		multiplayerMenuItem.setText("Multiplayer");
+		multiplayerMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				multiplayerMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(multiplayerMenuItem);
 
-        highscoreMenuItem.setMnemonic('h');
-        highscoreMenuItem.setText("Highscore");
-        highscoreMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                highscoreMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(highscoreMenuItem);
+		optionsMenuItem.setMnemonic('o');
+		optionsMenuItem.setText("Options");
+		optionsMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				optionsMenuItem1ActionPerformed(evt);
+			}
+		});
+		fileMenu.add(optionsMenuItem);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(exitMenuItem);
+		highscoreMenuItem.setMnemonic('h');
+		highscoreMenuItem.setText("Highscore");
+		highscoreMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				highscoreMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(highscoreMenuItem);
 
-        menuBar.add(fileMenu);
+		exitMenuItem.setMnemonic('x');
+		exitMenuItem.setText("Exit");
+		exitMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				exitMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(exitMenuItem);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
+		menuBar.add(fileMenu);
 
-        contentsMenuItem.setMnemonic('c');
-        contentsMenuItem.setText("Contents");
-        contentsMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                contentsMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(contentsMenuItem);
+		helpMenu.setMnemonic('h');
+		helpMenu.setText("Help");
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
-        helpMenu.add(aboutMenuItem);
+		contentsMenuItem.setMnemonic('c');
+		contentsMenuItem.setText("Contents");
+		contentsMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				contentsMenuItemActionPerformed(evt);
+			}
+		});
+		helpMenu.add(contentsMenuItem);
 
-        menuBar.add(helpMenu);
+		aboutMenuItem.setMnemonic('a');
+		aboutMenuItem.setText("About");
+		aboutMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				aboutMenuItemActionPerformed(evt);
+			}
+		});
+		helpMenu.add(aboutMenuItem);
 
-        setJMenuBar(menuBar);
+		menuBar.add(helpMenu);
 
-        bombermanLetters.setFont(new Font("Blade Runner Movie Font", 1, 24)); // NOI18N
-        bombermanLetters.setForeground(new Color(51, 255, 0));
-        bombermanLetters.setHorizontalAlignment(SwingConstants.CENTER);
-        bombermanLetters.setText("Bomberman");
-        bombermanLetters.setBounds(0, 0, getWidth(), 60);
-        add(bombermanLetters);
+		setJMenuBar(menuBar);
 
-        backgroundPanel.setBackground(new Color(0, 0, 0));
-        backgroundPanel.setBounds(0, 0, getWidth(), getHeight());
-        add(backgroundPanel);
-    }
+		bombermanLetters.setFont(new Font("Blade Runner Movie Font", 1, 24)); // NOI18N
+		bombermanLetters.setForeground(Color.BLACK);
+		bombermanLetters.setHorizontalAlignment(SwingConstants.LEFT);
+		bombermanLetters.setText("Bomberman");
+		bombermanLetters.setBounds(10, 350, getWidth(), 60);
+		add(bombermanLetters);
 
-    private void singleplayerMenuItemActionPerformed(ActionEvent evt) {
-        Bomberman.starteSingleplayer();
-    }
+		backgroundPanel.setBackground(Color.white);
+		backgroundPanel.setBounds(0, 0, getWidth(), getHeight());
 
-    private void multiplayerMenuItemActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+		backgroundPanel = Playground.ErstelleSpielfeld(backgroundPanel);
+		add(backgroundPanel);
 
-    private void optionsMenuItem1ActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+	}
 
-    private void highscoreMenuItemActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+	private ImageIcon createImage(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    private void exitMenuItemActionPerformed(ActionEvent evt) {
-        System.exit(0);
-    }
+	private void singleplayerMenuItemActionPerformed(ActionEvent evt) {
+		Bomberman.starteSingleplayer();
+	}
 
-    private void contentsMenuItemActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+	private void multiplayerMenuItemActionPerformed(ActionEvent evt) {
+		// TODO add your handling code here:
+	}
 
-    private void aboutMenuItemActionPerformed(ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+	private void optionsMenuItem1ActionPerformed(ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void highscoreMenuItemActionPerformed(ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void exitMenuItemActionPerformed(ActionEvent evt) {
+		System.exit(0);
+	}
+
+	private void contentsMenuItemActionPerformed(ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
+	private void aboutMenuItemActionPerformed(ActionEvent evt) {
+		// TODO add your handling code here:
+	}
 
 }
