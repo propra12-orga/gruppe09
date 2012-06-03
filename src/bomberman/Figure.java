@@ -1,5 +1,6 @@
 /**
- * Last Author : Lukas Date: 03/06/12 Last Action: ResettPosition eingefügt, setzt die Figur wieder auf 50/50 also startwert
+ * Last Author : Natalie Date: 03/06/12 Last Action: ResettPosition eingefügt, setzt die Figur wieder auf 50/50 also startwert
+ * Methode plantBomb() eingefuegt
  */
 package bomberman;
 
@@ -60,5 +61,10 @@ public class Figure extends JPanel {
 	public static void ResetPosition() {
 		positionX = 50;
 		positionY = 50;
+	}
+
+	public String plantBomb(Bomb bomb) {
+		return("plantBomb" + bomb.case_x + "#" + bomb.case_y +"#"+ bomb.radius);
+		
 	}
 }
