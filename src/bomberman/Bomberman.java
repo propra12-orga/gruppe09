@@ -1,348 +1,98 @@
 /**
- * Last Author : Lukas Date: 03/06/12 Last Action: Figur wird nun bei Singeplayer auf das Startfeld gesetzt */
+ * Last Author : Lukas Date: 04/06/12 Last Action: Initalize vereinfacht. Baut sich jetzt einfacher auf*/
 package bomberman;
 
 import java.awt.Container;
 
 public class Bomberman {
-    static Figure figure1;
-    static Gui gui;
+	static Figure figure1;
+	static Gui gui;
+	static Field Fields[][] = new Field[9][9];
+	private static Field POS;
 
-    public static void main(String[] args) {
-        gui = new Gui();
-        gui.setVisible(true);
-        initalize();
+	public static void main(String[] args) {
+		gui = new Gui();
+		// gui.setTitle("Bomberman");
+		// gui.setSize(300, 200);
+		// gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gui.setVisible(true);
+		initalize();
 
-        figure1 = new Figure(0, 0);
+		figure1 = new Figure(0, 0);
 
-        Container contentPane = gui.getContentPane();
-        contentPane.add(new MoveControl(figure1));
+		Container contentPane = gui.getContentPane();
+		contentPane.add(new MoveControl(figure1));
 
-    }
+	}
 
-    public static void startSingleplayer() {
-        gui.setVisible(false);
-        gui.update(gui.getGraphics());
+	public static void starteSingleplayer() {
+		gui.setVisible(false);
+		gui.update(gui.getGraphics());
 
-        gui.add(figure1, 0);
-        figure1.resetPosition();
+		gui.add(figure1, 0);
+		Figure.resetPosition();
 
-        gui.setVisible(true);
-    }
+		gui.setVisible(true);
+	}
 
-    public static void initalize() {
-        field1 = new Field();
-        field2 = new Field();
-        field3 = new Field();
-        field4 = new Field();
-        field5 = new Field();
-        field6 = new Field();
-        field7 = new Field();
-        field8 = new Field();
-        field9 = new Field();
-        field10 = new Field();
-        field11 = new Field();
-        field12 = new Field();
-        field13 = new Field();
-        field14 = new Field();
-        field15 = new Field();
-        field16 = new Field();
-        field17 = new Field();
-        field18 = new Field();
-        field19 = new Field();
-        field20 = new Field();
-        field21 = new Field();
-        field22 = new Field();
-        field23 = new Field();
-        field24 = new Field();
-        field25 = new Field();
-        field26 = new Field();
-        field27 = new Field();
-        field28 = new Field();
-        field29 = new Field();
-        field30 = new Field();
-        field31 = new Field();
-        field32 = new Field();
-        field33 = new Field();
-        field34 = new Field();
-        field35 = new Field();
-        field36 = new Field();
-        field37 = new Field();
-        field38 = new Field();
-        field39 = new Field();
-        field40 = new Field();
-        field41 = new Field();
-        field42 = new Field();
-        field43 = new Field();
-        field44 = new Field();
-        field45 = new Field();
-        field46 = new Field();
-        field47 = new Field();
-        field48 = new Field();
-        field49 = new Field();
-        field50 = new Field();
-        field51 = new Field();
-        field52 = new Field();
-        field53 = new Field();
-        field54 = new Field();
-        field55 = new Field();
-        field56 = new Field();
-        field57 = new Field();
-        field58 = new Field();
-        field59 = new Field();
-        field60 = new Field();
-        field61 = new Field();
-        field62 = new Field();
-        field63 = new Field();
-        field64 = new Field();
-        field65 = new Field();
-        field66 = new Field();
-        field67 = new Field();
-        field68 = new Field();
-        field69 = new Field();
-        field70 = new Field();
-        field71 = new Field();
-        field72 = new Field();
-        field73 = new Field();
-        field74 = new Field();
-        field75 = new Field();
-        field76 = new Field();
-        field77 = new Field();
-        field78 = new Field();
-        field79 = new Field();
-        field80 = new Field();
-        field81 = new Field();
-        field82 = new Field();
-        field83 = new Field();
-        field84 = new Field();
-        field85 = new Field();
-        field86 = new Field();
-        field87 = new Field();
-        field88 = new Field();
-        field89 = new Field();
-        field90 = new Field();
-        field91 = new Field();
-        field92 = new Field();
-        field93 = new Field();
-        field94 = new Field();
-        field95 = new Field();
-        field96 = new Field();
-        field97 = new Field();
-        field98 = new Field();
-        field99 = new Field();
-        field100 = new Field();
-        POS = new Field();
+	public static void initalize() {
+		POS = new Field();
+		int i = 0, j = 0;
+		while (i != 9) {
+			j = 0;
+			while (j != 9) {
+				Fields[i][j] = new Field();
 
-        field1.fillField(null, field11, null, field2, "FELD1");
-        field2.fillField(null, field12, field1, field3, "FELD2");
-        field3.fillField(null, field13, field2, field4, "FELD3");
-        field4.fillField(null, field14, field3, field5, "FELD4");
-        field5.fillField(null, field15, field4, field6, "FELD5");
-        field6.fillField(null, field16, field5, field7, "FELD6");
-        field7.fillField(null, field17, field6, field8, "FELD7");
-        field8.fillField(null, field18, field7, field9, "FELD8");
-        field9.fillField(null, field19, field8, field10, "FELD9");
-        field10.fillField(null, field20, field9, null, "FELD10");
-        field11.fillField(field1, field21, null, field12, "FELD11");
-        field12.fillField(field2, field22, field11, field13, "FELD12");
-        field13.fillField(field3, field23, field12, field14, "FELD13");
-        field14.fillField(field4, field24, field13, field15, "FELD14");
-        field15.fillField(field5, field25, field14, field16, "FELD15");
-        field16.fillField(field6, field26, field15, field17, "FELD16");
-        field17.fillField(field7, field27, field16, field18, "FELD17");
-        field18.fillField(field8, field28, field17, field19, "FELD18");
-        field19.fillField(field9, field29, field18, field20, "FELD19");
-        field20.fillField(field10, field30, field19, null, "FELD20");
-        field21.fillField(field11, field31, null, field22, "FELD21");
-        field22.fillField(field12, field32, field21, field23, "FELD22");
-        field23.fillField(field13, field33, field22, field24, "FELD23");
-        field24.fillField(field14, field34, field23, field25, "FELD24");
-        field25.fillField(field15, field35, field24, field26, "FELD25");
-        field26.fillField(field16, field36, field25, field27, "FELD26");
-        field27.fillField(field17, field37, field26, field28, "FELD27");
-        field28.fillField(field18, field38, field27, field29, "FELD28");
-        field29.fillField(field19, field39, field28, field30, "FELD29");
-        field30.fillField(field20, field40, field29, null, "FELD30");
-        field31.fillField(field21, field41, null, field32, "FELD31");
-        field32.fillField(field22, field42, field31, field33, "FELD32");
-        field33.fillField(field23, field43, field32, field34, "FELD33");
-        field34.fillField(field24, field44, field33, field35, "FELD34");
-        field35.fillField(field25, field45, field34, field36, "FELD35");
-        field36.fillField(field26, field46, field35, field37, "FELD36");
-        field37.fillField(field27, field47, field36, field38, "FELD37");
-        field38.fillField(field28, field48, field37, field39, "FELD38");
-        field39.fillField(field29, field49, field38, field40, "FELD39");
-        field40.fillField(field30, field50, field39, null, "FELD40");
-        field41.fillField(field31, field51, null, field42, "FELD41");
-        field42.fillField(field32, field52, field41, field43, "FELD42");
-        field43.fillField(field33, field53, field42, field44, "FELD43");
-        field44.fillField(field34, field54, field43, field45, "FELD44");
-        field45.fillField(field35, field55, field44, field46, "FELD45");
-        field46.fillField(field36, field56, field45, field47, "FELD46");
-        field47.fillField(field37, field57, field46, field48, "FELD47");
-        field48.fillField(field38, field58, field47, field49, "FELD48");
-        field49.fillField(field39, field59, field48, field50, "FELD49");
-        field50.fillField(field40, field60, field49, null, "FELD50");
-        field51.fillField(field41, field61, null, field52, "FELD51");
-        field52.fillField(field42, field62, field51, field53, "FELD52");
-        field53.fillField(field43, field63, field52, field54, "FELD53");
-        field54.fillField(field44, field64, field53, field55, "FELD54");
-        field55.fillField(field45, field65, field54, field56, "FELD55");
-        field56.fillField(field46, field66, field55, field57, "FELD56");
-        field57.fillField(field47, field67, field56, field58, "FELD57");
-        field58.fillField(field48, field68, field57, field59, "FELD58");
-        field59.fillField(field49, field69, field58, field60, "FELD59");
-        field60.fillField(field50, field70, field59, null, "FELD60");
-        field61.fillField(field51, field71, field60, field62, "FELD61");
-        field62.fillField(field52, field72, null, field63, "FELD62");
-        field63.fillField(field53, field73, field62, field64, "FELD63");
-        field64.fillField(field54, field74, field63, field65, "FELD64");
-        field65.fillField(field55, field75, field64, field66, "FELD65");
-        field66.fillField(field56, field76, field65, field67, "FELD66");
-        field67.fillField(field57, field77, field66, field68, "FELD67");
-        field68.fillField(field58, field78, field67, field69, "FELD68");
-        field69.fillField(field59, field79, field68, field70, "FELD69");
-        field70.fillField(field60, field80, field69, null, "FELD70");
-        field71.fillField(field61, field81, null, field72, "FELD71");
-        field72.fillField(field62, field82, field71, field73, "FELD72");
-        field73.fillField(field63, field83, field72, field74, "FELD73");
-        field74.fillField(field64, field84, field73, field75, "FELD74");
-        field75.fillField(field65, field85, field74, field76, "FELD75");
-        field76.fillField(field66, field86, field75, field77, "FELD76");
-        field77.fillField(field67, field87, field76, field78, "FELD77");
-        field78.fillField(field68, field88, field77, field79, "FELD78");
-        field79.fillField(field69, field89, field78, field80, "FELD79");
-        field80.fillField(field70, field90, field79, null, "FELD80");
-        field81.fillField(field71, field91, null, field82, "FELD81");
-        field82.fillField(field72, field92, field81, field83, "FELD82");
-        field83.fillField(field73, field93, field82, field84, "FELD83");
-        field84.fillField(field74, field94, field83, field85, "FELD84");
-        field85.fillField(field75, field95, field84, field86, "FELD85");
-        field86.fillField(field76, field96, field85, field87, "FELD86");
-        field87.fillField(field77, field97, field86, field88, "FELD87");
-        field88.fillField(field78, field98, field87, field89, "FELD88");
-        field89.fillField(field79, field99, field88, field90, "FELD89");
-        field90.fillField(field80, field100, field89, null, "FELD90");
-        field91.fillField(field81, null, null, field92, "FELD91");
-        field92.fillField(field82, null, field91, field93, "FELD92");
-        field93.fillField(field83, null, field92, field94, "FELD93");
-        field94.fillField(field84, null, field93, field95, "FELD94");
-        field95.fillField(field85, null, field94, field96, "FELD95");
-        field96.fillField(field86, null, field95, field97, "FELD96");
-        field97.fillField(field87, null, field96, field98, "FELD97");
-        field98.fillField(field88, null, field97, field99, "FELD98");
-        field99.fillField(field89, null, field98, field100, "FELD99");
-        field100.fillField(field90, null, field99, null, "FELD100");
+				j++;
+			}
+			i++;
+		}
+		i = 0;
+		while (i <= Fields.length) {
+			j = 0;
+			while (j <= Fields.length) {
+				if ((i == 0) && (j == 0)) {
+					Fields[i][j].fillField(null, Fields[i + 1][j], null,
+							Fields[i][j + 1], "FELD1");
+				} else if ((i == 0) && (j < 8)) {
+					Fields[i][j].fillField(null, Fields[i + 1][j],
+							Fields[i][j - 1], Fields[i][j + 1], "Obere Grenze");
+				} else if ((i == 0) && (j == 8)) {
+					Fields[i][j].fillField(null, Fields[i + 1][j],
+							Fields[i][j - 1], null, "Obere und rechte Grenze");
+				} else if (((i != 0) && (i < 8)) && (j == 0)) {
+					Fields[i][j].fillField(Fields[i - 1][j], Fields[i + 1][j],
+							null, Fields[i][j + 1], "Linke Grenze");
+				} else if ((i == 8) && (j == 0)) {
+					Fields[i][j].fillField(Fields[i - 1][j], null, null,
+							Fields[i][j + 1], "Linke und untere Grenze");
+				} else if ((i == 8) && ((j != 0) && (j < 8))) {
+					Fields[i][j]
+							.fillField(Fields[i - 1][j], null,
+									Fields[i][j - 1], Fields[i][j + 1],
+									"untere Grenze");
+				} else if ((i == 8) && (j == 8)) {
+					Fields[i][j].fillField(Fields[i - 1][j], null,
+							Fields[i][j - 1], null, "Rechte und untere Grenze");
+				} else if ((i < 8) && (j == 8)) {
+					Fields[i][j].fillField(Fields[i - 1][j], Fields[i + 1][j],
+							Fields[i][j - 1], null, "Rechte Grenze");
+				} else if ((i > 0) && (i < 8) && ((j > 0) && (j < 8))) {
+					Fields[i][j].fillField(Fields[i - 1][j], Fields[i + 1][j],
+							Fields[i][j - 1], Fields[i][j + 1], "Spielfeld");
+				}
 
-        POS = field1;
-    }
+				j++;
+			}
+			i++;
+		}
 
-    public static Field GetPos() {
-        return POS;
-    }
+		POS = Fields[0][0];
 
-    // Attribute
+	}
 
-    private static Field field1;
-    private static Field field2;
-    private static Field field3;
-    private static Field field4;
-    private static Field field5;
-    private static Field field6;
-    private static Field field7;
-    private static Field field8;
-    private static Field field9;
-    private static Field field10;
-    private static Field field11;
-    private static Field field12;
-    private static Field field13;
-    private static Field field14;
-    private static Field field15;
-    private static Field field16;
-    private static Field field17;
-    private static Field field18;
-    private static Field field19;
-    private static Field field20;
-    private static Field field21;
-    private static Field field22;
-    private static Field field23;
-    private static Field field24;
-    private static Field field25;
-    private static Field field26;
-    private static Field field27;
-    private static Field field28;
-    private static Field field29;
-    private static Field field30;
-    private static Field field31;
-    private static Field field32;
-    private static Field field33;
-    private static Field field34;
-    private static Field field35;
-    private static Field field36;
-    private static Field field37;
-    private static Field field38;
-    private static Field field39;
-    private static Field field40;
-    private static Field field41;
-    private static Field field42;
-    private static Field field43;
-    private static Field field44;
-    private static Field field45;
-    private static Field field46;
-    private static Field field47;
-    private static Field field48;
-    private static Field field49;
-    private static Field field50;
-    private static Field field51;
-    private static Field field52;
-    private static Field field53;
-    private static Field field54;
-    private static Field field55;
-    private static Field field56;
-    private static Field field57;
-    private static Field field58;
-    private static Field field59;
-    private static Field field60;
-    private static Field field61;
-    private static Field field62;
-    private static Field field63;
-    private static Field field64;
-    private static Field field65;
-    private static Field field66;
-    private static Field field67;
-    private static Field field68;
-    private static Field field69;
-    private static Field field70;
-    private static Field field71;
-    private static Field field72;
-    private static Field field73;
-    private static Field field74;
-    private static Field field75;
-    private static Field field76;
-    private static Field field77;
-    private static Field field78;
-    private static Field field79;
-    private static Field field80;
-    private static Field field81;
-    private static Field field82;
-    private static Field field83;
-    private static Field field84;
-    private static Field field85;
-    private static Field field86;
-    private static Field field87;
-    private static Field field88;
-    private static Field field89;
-    private static Field field90;
-    private static Field field91;
-    private static Field field92;
-    private static Field field93;
-    private static Field field94;
-    private static Field field95;
-    private static Field field96;
-    private static Field field97;
-    private static Field field98;
-    private static Field field99;
-    private static Field field100;
-    private static Field POS;
+	public static Field GetPos() {
+		return POS;
+	}
 
 }
