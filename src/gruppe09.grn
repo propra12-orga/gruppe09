@@ -4,72 +4,86 @@
       <name="=gruppe09/src<bomberman{Bomb.java[Bomb"/>
       <height="-1"/>
       <width="-1"/>
-      <x="35"/>
-      <y="20"/>
+      <x="19"/>
+      <y="4"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
       <height="-1"/>
       <width="-1"/>
-      <x="257"/>
-      <y="1"/>
+      <x="381"/>
+      <y="260"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Playground.java[Playground"/>
       <height="-1"/>
       <width="-1"/>
-      <x="469"/>
-      <y="7"/>
+      <x="534"/>
+      <y="-1"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
       <height="-1"/>
       <width="-1"/>
-      <x="710"/>
-      <y="10"/>
+      <x="853"/>
+      <y="22"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{ReadInOut.java[ReadInOut"/>
       <height="-1"/>
       <width="-1"/>
-      <x="27"/>
-      <y="188"/>
+      <x="59"/>
+      <y="258"/>
+   </type>
+   <type>
+      <name="=gruppe09/src<bomberman{Gui.java[Gui"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="216"/>
+      <y="532"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Field.java[Field"/>
       <height="-1"/>
       <width="-1"/>
-      <x="231"/>
-      <y="300"/>
+      <x="551"/>
+      <y="582"/>
+   </type>
+   <type>
+      <name="=gruppe09/src<bomberman{Explosion.java[Explosion"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="972"/>
+      <y="209"/>
+   </type>
+   <type>
+      <name="=gruppe09/src<bomberman{Flame.java[Flame"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="1002"/>
+      <y="529"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Figure.java[Figure"/>
       <height="-1"/>
       <width="-1"/>
-      <x="668"/>
-      <y="237"/>
+      <x="657"/>
+      <y="143"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{MoveThread.java[MoveThread"/>
       <height="-1"/>
       <width="-1"/>
-      <x="1019"/>
-      <y="203"/>
+      <x="641"/>
+      <y="447"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Bomberman.java[Bomberman"/>
       <height="-1"/>
       <width="-1"/>
-      <x="23"/>
-      <y="366"/>
+      <x="6"/>
+      <y="426"/>
    </type>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
-      <sourceType="=gruppe09/src<bomberman{MoveThread.java[MoveThread"/>
-      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
       <sourceType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
@@ -85,9 +99,30 @@
       </bendpoints>
    </relationship>
    <relationship>
+      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
+      <sourceType="=gruppe09/src<bomberman{MoveThread.java[MoveThread"/>
+      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
+      <sourceType="=gruppe09/src<bomberman{Bomb.java[Bomb"/>
+      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=gruppe09/src<bomberman{Figure.java[Figure"/>
       <targetType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=gruppe09/src<bomberman{Explosion.java[Explosion"/>
+      <targetType="=gruppe09/src<bomberman{Flame.java[Flame"/>
       <bendpoints>
       </bendpoints>
    </relationship>

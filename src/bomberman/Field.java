@@ -14,7 +14,7 @@ public class Field {
 
     }
 
-    public void FillField(Field pTop, Field pBottom, Field pLeft, Field pRight, Object pInhalt) {
+    public void fillField(Field pTop, Field pBottom, Field pLeft, Field pRight, Object pInhalt) {
         top = pTop;
         bottom = pBottom;
         left = pLeft;

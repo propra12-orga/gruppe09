@@ -18,7 +18,7 @@ public class MoveThread extends Thread {// Bewegt die übergebene Figur in die
         while (!interrupted()) {
             figure1.move(direction);
             try {
-                sleep(20 / figure1.getSpeed());
+                sleep(2 / figure1.getSpeed());
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 interrupt();
