@@ -1,5 +1,5 @@
 /**
- * Last Author : Dirk Date: 04/06/12 Last Action: while- zu for-schleifen umgeschrieben und mittels Variable numberOfFields wird die Anzahl der Felder nun dynamisch an die Groesse angepasst 
+ * Last Author : Dirk Date: 04/06/12 Last Action: resetPosition() nun hier eingefuegt statt in der Klasse Figure
  */
 package bomberman;
 
@@ -29,9 +29,14 @@ public class Bomberman {
         gui.update(gui.getGraphics());
 
         gui.add(figure1, 0);
-        Figure.resetPosition();
+        resetPosition();
 
         gui.setVisible(true);
+    }
+
+    private static void resetPosition() {
+        figure1.setPosition(30, 30);
+        // fields muss hier noch zurueck gesetzt werden
     }
 
     public static void initalize() {
@@ -44,7 +49,8 @@ public class Bomberman {
         for (int i = 0; i < numberOfFields; i++) {
             for (int j = 0; j < numberOfFields; j++) {
                 if ((i == 0) && (j == 0)) {
-                    fields[i][j].fillField(null, fields[i + 1][j], null, fields[i][j + 1], "FELD1");
+                    fields[i][j].fillField(null, fields[i + 1][j], null, fields[i][j + 1],
+                            "Obere und linke Grenze");
                 } else if ((i == 0) && (j < numberOfFields - 1)) {
                     fields[i][j].fillField(null, fields[i + 1][j], fields[i][j - 1],
                             fields[i][j + 1], "Obere Grenze");

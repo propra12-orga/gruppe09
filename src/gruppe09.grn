@@ -4,86 +4,100 @@
       <name="=gruppe09/src<bomberman{Bomb.java[Bomb"/>
       <height="-1"/>
       <width="-1"/>
-      <x="19"/>
-      <y="4"/>
+      <x="0"/>
+      <y="0"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
       <height="-1"/>
       <width="-1"/>
-      <x="381"/>
-      <y="260"/>
+      <x="570"/>
+      <y="654"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Playground.java[Playground"/>
       <height="-1"/>
       <width="-1"/>
-      <x="534"/>
-      <y="-1"/>
+      <x="535"/>
+      <y="-7"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
       <height="-1"/>
       <width="-1"/>
-      <x="853"/>
-      <y="22"/>
+      <x="506"/>
+      <y="152"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{ReadInOut.java[ReadInOut"/>
       <height="-1"/>
       <width="-1"/>
-      <x="59"/>
-      <y="258"/>
+      <x="342"/>
+      <y="764"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Gui.java[Gui"/>
       <height="-1"/>
       <width="-1"/>
-      <x="216"/>
-      <y="532"/>
+      <x="817"/>
+      <y="521"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Field.java[Field"/>
       <height="-1"/>
       <width="-1"/>
-      <x="551"/>
-      <y="582"/>
+      <x="957"/>
+      <y="20"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Explosion.java[Explosion"/>
       <height="-1"/>
       <width="-1"/>
-      <x="972"/>
-      <y="209"/>
+      <x="-1"/>
+      <y="717"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Flame.java[Flame"/>
       <height="-1"/>
       <width="-1"/>
-      <x="1002"/>
-      <y="529"/>
+      <x="0"/>
+      <y="400"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Figure.java[Figure"/>
       <height="-1"/>
       <width="-1"/>
-      <x="657"/>
-      <y="143"/>
+      <x="535"/>
+      <y="329"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{MoveThread.java[MoveThread"/>
       <height="-1"/>
       <width="-1"/>
-      <x="641"/>
-      <y="447"/>
+      <x="126"/>
+      <y="264"/>
    </type>
    <type>
       <name="=gruppe09/src<bomberman{Bomberman.java[Bomberman"/>
       <height="-1"/>
       <width="-1"/>
-      <x="6"/>
-      <y="426"/>
+      <x="748"/>
+      <y="265"/>
    </type>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
+      <sourceType="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
+      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=gruppe09/src<bomberman{Explosion.java[Explosion"/>
+      <targetType="=gruppe09/src<bomberman{Flame.java[Flame"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
       <sourceType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
@@ -92,9 +106,9 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
-      <sourceType="=gruppe09/src<bomberman{MoveControl.java[MoveControl"/>
-      <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=gruppe09/src<bomberman{Figure.java[Figure"/>
+      <targetType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -109,20 +123,6 @@
       <class="edu.buffalo.cse.green.relationship.association.AssociationPart"/>
       <sourceType="=gruppe09/src<bomberman{Bomb.java[Bomb"/>
       <targetType="=gruppe09/src<bomberman{Figure.java[Figure"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=gruppe09/src<bomberman{Figure.java[Figure"/>
-      <targetType="=gruppe09/src<bomberman{UpdateFigureThread.java[UpdateFigureThread"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=gruppe09/src<bomberman{Explosion.java[Explosion"/>
-      <targetType="=gruppe09/src<bomberman{Flame.java[Flame"/>
       <bendpoints>
       </bendpoints>
    </relationship>
