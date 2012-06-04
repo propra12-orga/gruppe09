@@ -20,7 +20,7 @@ public class MoveControl extends JPanel implements KeyListener {
 	public MoveControl(Figure figure1) {
 		this.figure1 = figure1;
 		addKeyListener(this);
-		POS = Bomberman.GetPos();
+		POS = Bomberman.getPos();
 	}
 
 	public void keyPressed(KeyEvent evt) {

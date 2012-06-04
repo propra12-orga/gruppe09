@@ -16,15 +16,15 @@ public class Playground {
             Playground.class.getResource("grafics/map/block.png")));
     static Icon icon_Grass = new ImageIcon(Toolkit.getDefaultToolkit().getImage(
             Playground.class.getResource("grafics/map/grass.jpg")));
-    private static int sizeOfPlayground = 11;// sollte immer ungerade sein
-    private static JLabel field[][] = new JLabel[sizeOfPlayground][sizeOfPlayground];
+    private static int numberOfImages = Bomberman.numberOfFields + 2;
+    private static JLabel field[][] = new JLabel[numberOfImages][numberOfImages];
 
     public static JPanel createPlayground(JPanel backgroundPanel) {
         backgroundPanel.setLayout(null);
-        for (int i = 0; i < sizeOfPlayground; i++) {
-            for (int j = 0; j < sizeOfPlayground; j++) {
-                if (((i % 2 == 0) && (j % 2 == 0)) || ((i == 0) || (i == sizeOfPlayground - 1))
-                        || ((j == 0) || (j == sizeOfPlayground - 1))) {
+        for (int i = 0; i < numberOfImages; i++) {
+            for (int j = 0; j < numberOfImages; j++) {
+                if (((i % 2 == 0) && (j % 2 == 0)) || ((i == 0) || (i == numberOfImages - 1))
+                        || ((j == 0) || (j == numberOfImages - 1))) {
                     field[i][j] = new JLabel(icon_Border);
                 } else {
                     field[i][j] = new JLabel(icon_Grass);
