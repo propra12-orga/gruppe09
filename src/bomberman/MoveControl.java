@@ -32,10 +32,8 @@ public class MoveControl extends JPanel implements KeyListener {
 	public void keyPressed(KeyEvent evt) {
 		int keyCode = evt.getKeyCode();
 		if (keyCode == KeyEvent.VK_LEFT) {// Startet die MoveThreads für linke
-											// Bewegungsrichtung
-
 			// Kann später im Spieler zusammen gefasst werden
-			if (POS.getLeftNeighbour()) {
+			if ((figure1.IsAtLeftBorder() == false)) {
 				if (moveLeftThread == null) {
 					moveLeftThread = new MoveThread(this.figure1, "left");
 					moveLeftThread.start();
@@ -45,10 +43,6 @@ public class MoveControl extends JPanel implements KeyListener {
 					moveLeftThread.start();
 				}
 
-				POS = POS.getLeft();
-				String str;
-				str = (String) POS.GetSpeicher();
-				System.out.println(str);
 			} else
 				System.out.println("Grenze erreicht, es geht nicht weiter");
 			// System.out.println("Links");
@@ -56,7 +50,7 @@ public class MoveControl extends JPanel implements KeyListener {
 		if (keyCode == KeyEvent.VK_RIGHT) {// Startet die MoveThreads für rechte
 											// Bewegungsrichtung
 
-			if (POS.getRightNeighbour()) {
+			if ((figure1.IsAtRightBorder() == false)) {
 				if (moveRightThread == null) {
 					moveRightThread = new MoveThread(this.figure1, "right");
 					moveRightThread.start();
@@ -67,43 +61,36 @@ public class MoveControl extends JPanel implements KeyListener {
 
 					moveRightThread.start();
 				}// Kann später im Spieler zusammen gefasst werden
-				POS = POS.getRight();
-				String str;
-				str = (String) POS.GetSpeicher();
-				System.out.println(str);
 			} else
 				System.out.println("Grenze erreicht, es geht nicht weiter");
-
-			// System.out.println("Rechts");
 		}
+
 		if (keyCode == KeyEvent.VK_UP) {// Startet die MoveThreads für obere
 										// Bewegungsrichtung
+			if (moveUpThread == null) {
+				moveUpThread = new MoveThread(figure1, "up");
+				moveUpThread.start();
+			}
+			if (!moveUpThread.isAlive()) {
+
+				moveUpThread = new MoveThread(figure1, "up");
+
+				moveUpThread.start();
+			}
 
 			// Kann später im Spieler zusammen gefasst werden
-			if (POS.getTopNeighbour()) {
-				if (moveUpThread == null) {
-					moveUpThread = new MoveThread(this.figure1, "up");
-					moveUpThread.start();
-				}
-				if (!moveUpThread.isAlive()) {
-
-					moveUpThread = new MoveThread(this.figure1, "up");
-
-					moveUpThread.start();
-				}
-				POS = POS.getTop();
-				String str;
-				str = (String) POS.GetSpeicher();
-				System.out.println(str);
-			} else
+			else
 				System.out.println("Grenze erreicht, es geht nicht weiter");
 			// System.out.println("Oben");
 		}
-		if (keyCode == KeyEvent.VK_DOWN) {// Startet die MoveThreads für untere
+
+		if (keyCode == KeyEvent.VK_DOWN) {// Startet die MoveThreads für
+											// untere
 											// Bewegungsrichtung
 
 			// Kann später im Spieler zusammen gefasst werden
-			if (POS.getBottomNeighbour()) {
+			if ((figure1.IsAtBottomBorder() == false)) {
+
 				if (moveDownThread == null) {
 					moveDownThread = new MoveThread(this.figure1, "down");
 					moveDownThread.start();
@@ -114,10 +101,7 @@ public class MoveControl extends JPanel implements KeyListener {
 
 					moveDownThread.start();
 				}
-				POS = POS.getBottom();
-				String str;
-				str = (String) POS.GetSpeicher();
-				System.out.println(str);
+
 			} else
 				System.out.println("Grenze erreicht, es geht nicht weiter");
 			// System.out.println("Unten");
@@ -178,6 +162,7 @@ public class MoveControl extends JPanel implements KeyListener {
 
 			System.out.println("Unten");
 		}
+
 	}
 
 	public void keyReleased(KeyEvent evt) {// Beendet die eben gestarteten
