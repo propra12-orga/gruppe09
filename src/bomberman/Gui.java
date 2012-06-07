@@ -166,7 +166,7 @@ public class Gui extends JFrame {
 	}
 
 	private void multiplayerMenuItemActionPerformed(ActionEvent evt) {
-		// TODO add your handling code here:
+		Bomberman.starteMultiplayer();
 	}
 
 	private void optionsMenuItem1ActionPerformed(ActionEvent evt) {

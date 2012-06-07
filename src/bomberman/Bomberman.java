@@ -6,86 +6,108 @@ package bomberman;
 import java.awt.Container;
 
 public class Bomberman {
-    static Figure figure1;
-    static Gui gui;
-    public static int numberOfFields = 9;// sollte immer ungerade sein
-    static Field fields[][] = new Field[numberOfFields][numberOfFields];
-    private static Field pos;
+	static Figure figure1;
+	static Figure2 figure2;
+	static Gui gui;
+	static Container contentPane;
+	public static int numberOfFields = 9;// sollte immer ungerade sein
+	static Field fields[][] = new Field[numberOfFields][numberOfFields];
+	private static Field pos;
 
-    public static void main(String[] args) {
-        gui = new Gui();
-        gui.setVisible(true);
-        initalize();
+	public static void main(String[] args) {
+		gui = new Gui();
+		gui.setVisible(true);
+		initalize();
 
-        figure1 = new Figure(0, 0);
+		figure1 = new Figure(30, 30);
+		figure2 = new Figure2(270, 270);
 
-        Container contentPane = gui.getContentPane();
-        contentPane.add(new MoveControl(figure1));
+		Container contentPane = gui.getContentPane();
+		contentPane.add(new MoveControl(figure1, figure2));
 
-    }
+	}
 
-    public static void starteSingleplayer() {
-        gui.setVisible(false);
-        gui.update(gui.getGraphics());
+	public static void starteSingleplayer() {
+		gui.setVisible(false);
+		gui.update(gui.getGraphics());
+		gui.add(figure1, 0);
 
-        gui.add(figure1, 0);
-        resetPosition();
+		// contentPane.add(new MoveControl(figure1));
+		// gui.add(figure2, 0);
 
-        gui.setVisible(true);
-    }
+		// resetPosition();
 
-    private static void resetPosition() {
-        figure1.setPosition(30, 30);
-        // fields muss hier noch zurueck gesetzt werden
-    }
+		gui.setVisible(true);
+	}
 
-    public static void initalize() {
-        pos = new Field();
-        for (int i = 0; i < numberOfFields; i++) {
-            for (int j = 0; j < numberOfFields; j++) {
-                fields[i][j] = new Field();
-            }
-        }
-        for (int i = 0; i < numberOfFields; i++) {
-            for (int j = 0; j < numberOfFields; j++) {
-                if ((i == 0) && (j == 0)) {
-                    fields[i][j].fillField(null, fields[i + 1][j], null, fields[i][j + 1],
-                            "Obere und linke Grenze");
-                } else if ((i == 0) && (j < numberOfFields - 1)) {
-                    fields[i][j].fillField(null, fields[i + 1][j], fields[i][j - 1],
-                            fields[i][j + 1], "Obere Grenze");
-                } else if ((i == 0) && (j == numberOfFields - 1)) {
-                    fields[i][j].fillField(null, fields[i + 1][j], fields[i][j - 1], null,
-                            "Obere und rechte Grenze");
-                } else if (((i != 0) && (i < numberOfFields - 1)) && (j == 0)) {
-                    fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j], null,
-                            fields[i][j + 1], "Linke Grenze");
-                } else if ((i == numberOfFields - 1) && (j == 0)) {
-                    fields[i][j].fillField(fields[i - 1][j], null, null, fields[i][j + 1],
-                            "Linke und untere Grenze");
-                } else if ((i == numberOfFields - 1) && ((j != 0) && (j < numberOfFields - 1))) {
-                    fields[i][j].fillField(fields[i - 1][j], null, fields[i][j - 1],
-                            fields[i][j + 1], "untere Grenze");
-                } else if ((i == numberOfFields - 1) && (j == numberOfFields - 1)) {
-                    fields[i][j].fillField(fields[i - 1][j], null, fields[i][j - 1], null,
-                            "Rechte und untere Grenze");
-                } else if ((i < numberOfFields - 1) && (j == numberOfFields - 1)) {
-                    fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j], fields[i][j - 1],
-                            null, "Rechte Grenze");
-                } else if ((i > 0) && (i < numberOfFields - 1)
-                        && ((j > 0) && (j < numberOfFields - 1))) {
-                    fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j], fields[i][j - 1],
-                            fields[i][j + 1], "Spielfeld");
-                }
-            }
-        }
+	public static void starteMultiplayer() {
+		gui.setVisible(false);
+		gui.update(gui.getGraphics());
+		starteSingleplayer();
+		gui.add(figure2, 0);
 
-        pos = fields[0][0];
+		// resetPosition();
 
-    }
+		gui.setVisible(true);
+	}
 
-    public static Field getPos() {
-        return pos;
-    }
+	private static void resetPosition() {
+		figure1.setPosition(30, 30);
+		// fields muss hier noch zurueck gesetzt werden
+	}
+
+	public static void initalize() {
+		pos = new Field();
+		for (int i = 0; i < numberOfFields; i++) {
+			for (int j = 0; j < numberOfFields; j++) {
+				fields[i][j] = new Field();
+			}
+		}
+		for (int i = 0; i < numberOfFields; i++) {
+			for (int j = 0; j < numberOfFields; j++) {
+				if ((i == 0) && (j == 0)) {
+					fields[i][j].fillField(null, fields[i + 1][j], null,
+							fields[i][j + 1], "Obere und linke Grenze");
+				} else if ((i == 0) && (j < numberOfFields - 1)) {
+					fields[i][j].fillField(null, fields[i + 1][j],
+							fields[i][j - 1], fields[i][j + 1], "Obere Grenze");
+				} else if ((i == 0) && (j == numberOfFields - 1)) {
+					fields[i][j].fillField(null, fields[i + 1][j],
+							fields[i][j - 1], null, "Obere und rechte Grenze");
+				} else if (((i != 0) && (i < numberOfFields - 1)) && (j == 0)) {
+					fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j],
+							null, fields[i][j + 1], "Linke Grenze");
+				} else if ((i == numberOfFields - 1) && (j == 0)) {
+					fields[i][j].fillField(fields[i - 1][j], null, null,
+							fields[i][j + 1], "Linke und untere Grenze");
+				} else if ((i == numberOfFields - 1)
+						&& ((j != 0) && (j < numberOfFields - 1))) {
+					fields[i][j]
+							.fillField(fields[i - 1][j], null,
+									fields[i][j - 1], fields[i][j + 1],
+									"untere Grenze");
+				} else if ((i == numberOfFields - 1)
+						&& (j == numberOfFields - 1)) {
+					fields[i][j].fillField(fields[i - 1][j], null,
+							fields[i][j - 1], null, "Rechte und untere Grenze");
+				} else if ((i < numberOfFields - 1)
+						&& (j == numberOfFields - 1)) {
+					fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j],
+							fields[i][j - 1], null, "Rechte Grenze");
+				} else if ((i > 0) && (i < numberOfFields - 1)
+						&& ((j > 0) && (j < numberOfFields - 1))) {
+					fields[i][j].fillField(fields[i - 1][j], fields[i + 1][j],
+							fields[i][j - 1], fields[i][j + 1], "Spielfeld");
+				}
+			}
+		}
+
+		pos = fields[0][0];
+
+	}
+
+	public static Field getPos() {
+		return pos;
+	}
 
 }
