@@ -1,5 +1,5 @@
 /**
- * Last Author : Dirk Date: 04/06/12 Last Action: resetPosition() nun hier eingefuegt statt in der Klasse Figure
+ * Last Author : Dirk Date: 09/06/12 Last Action: Es wird nun die Collision der Spielinternen grenzsteine unter initalize festgelegt
  */
 package bomberman;
 
@@ -103,6 +103,45 @@ public class Bomberman {
 		}
 
 		pos = fields[0][0];
+		int x, y;
+		x = 30;
+		for (int i = 0; i < numberOfFields; i++) {
+			y = 30;
+			for (int j = 0; j < numberOfFields; j++) {
+				fields[i][j].setXY(y, x);
+				y += 30;
+			}
+			x += 30;
+
+		}
+
+		fields[1][1].setIsFree(false);
+		fields[1][3].setIsFree(false);
+		fields[1][5].setIsFree(false);
+		fields[1][7].setIsFree(false);
+
+		fields[3][1].setIsFree(false);
+		fields[3][3].setIsFree(false);
+		fields[3][5].setIsFree(false);
+		fields[3][7].setIsFree(false);
+
+		fields[5][1].setIsFree(false);
+		fields[5][3].setIsFree(false);
+		fields[5][5].setIsFree(false);
+		fields[5][7].setIsFree(false);
+
+		fields[7][1].setIsFree(false);
+		fields[7][3].setIsFree(false);
+		fields[7][5].setIsFree(false);
+		fields[7][7].setIsFree(false);
+		/*
+		 * for (int i = 0; i < numberOfFields; i++) {
+		 * 
+		 * for (int j = 0; j < numberOfFields; j++) {
+		 * System.out.print(fields[i][j].getCoordl()); System.out.print('|');
+		 * System.out.print(fields[i][j].getCoordt()); System.out.print(' '); }
+		 * System.out.println(' '); }
+		 */
 
 	}
 

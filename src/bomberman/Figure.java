@@ -1,5 +1,5 @@
 /**
- * Last Author : Dirk Date: 04/06/12 Last Action: ResettPosition zu setPosition umgeschrieben
+ * Last Author : Dirk Date: 04/06/12 Last Action: Move so bearbeitet, dass sich die Figur nun nicht mehr gegen die Spielinteren grenze steine steuern lässt!
  */
 package bomberman;
 
@@ -22,6 +22,7 @@ public class Figure extends JPanel {
 		positionY = y;
 		speed = 1;
 		figureThread = new UpdateFigureThread(this);
+		POS = Bomberman.getPos();
 	}
 
 	public void paint(Graphics g) {
@@ -37,22 +38,124 @@ public class Figure extends JPanel {
 	public void move(String direction) {
 
 		if (direction == "left") {
-			if (IsAtLeftBorder() == false) {
-				positionX -= 1;
+
+			if (POS.getLeftNeighbour()) {
+				if (POS.getX() == 60) {
+					if (positionX == POS.getLeft().getX()) {
+						System.out.println("Position gewechselt!");
+						System.out.println("Alte Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+						POS = POS.getLeft();
+						System.out.println("Neue Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+					}
+				} else {
+					if (positionX == POS.getX()) {
+						System.out.println("Position gewechselt!");
+						System.out.println("Alte Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+						POS = POS.getLeft();
+						System.out.println("Neue Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+					}
+				}
 			}
 
+			if (IsAtLeftBorder() == false) {
+
+				if (POS.getLeft() != null) {
+					if (POS.getLeft().IsFree() == true) {
+						positionX -= 1;
+					}
+				}
+			}
 		} else if (direction == "right") {
+
+			if (POS.getRightNeighbour()) {
+				if (positionX == POS.getRight().getX()) {
+					System.out.println("Position gewechselt!");
+					System.out.println("Alte Position:");
+					System.out.print(POS.getX());
+					System.out.print('|');
+					System.out.print(POS.getY());
+					POS = POS.getRight();
+					System.out.println("Neue Position:");
+					System.out.print(POS.getX());
+					System.out.print('|');
+					System.out.print(POS.getY());
+				}
+			}
+
 			if (IsAtRightBorder() == false) {
-				positionX += 1;
+
+				if (POS.getRight().IsFree() == true) {
+					positionX += 1;
+				}
 			}
 		} else if (direction == "up") {
 
-			if (IsAtUpperBorder() == false)
-				positionY -= 1;
-		} else {
+			if (POS.getTopNeighbour()) {
 
+				if (POS.getY() == 60) {
+					if (positionY == POS.getTop().getY()) {
+						System.out.println("Position gewechselt!");
+						System.out.println("Alte Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+						POS = POS.getTop();
+						System.out.println("Neue Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+					}
+				} else {
+					if (positionY == POS.getY()) {
+						System.out.println("Position gewechselt!");
+						System.out.println("Alte Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+						POS = POS.getTop();
+						System.out.println("Neue Position:");
+						System.out.print(POS.getX());
+						System.out.print('|');
+						System.out.print(POS.getY());
+					}
+				}
+			}
+			if (IsAtUpperBorder() == false)
+				if (POS.getTop().IsFree() == true) {
+					positionY -= 1;
+				}
+		} else {
+			if (POS.getBottomNeighbour()) {
+
+				if (positionY == POS.getBottom().getY()) {
+					System.out.println("Position gewechselt!");
+					System.out.println("Alte Position:");
+					System.out.print(POS.getX());
+					System.out.print('|');
+					System.out.print(POS.getY());
+					POS = POS.getBottom();
+					System.out.println("Neue Position:");
+					System.out.print(POS.getX());
+					System.out.print('|');
+					System.out.print(POS.getY());
+				}
+			}
 			if (IsAtBottomBorder() == false)
-				positionY += 1;
+				if (POS.getBottom().IsFree() == true) {
+					positionY += 1;
+				}
 
 		}
 	}
