@@ -31,44 +31,45 @@ import java.util.Scanner;
 
 public class ReadInOut {
 
-    // Attributdeklaration
-    private static String fFileName;
-    private static String fEncoding;
+	// Attributdeklaration
+	private static String fFileName;
+	private static String fEncoding;
 
-    ReadInOut(String aFileName) {
-        fEncoding = "UTF-8";// Standart UTF-8 Kann geändert werden, weiß aber
-                            // net wieso wir das machen sollten
-        fFileName = aFileName;
-    }
+	ReadInOut(String aFileName) {
+		fEncoding = "UTF-8";// Standart UTF-8 Kann geändert werden, weiß aber
+							// net wieso wir das machen sollten
+		fFileName = aFileName;
+	}
 
-    void read() throws IOException {
-        print("Einlesen der Datei:.");
-        StringBuilder text = new StringBuilder();
-        String NL = System.getProperty("line.separator");
-        Scanner scanner = new Scanner(new FileInputStream(fFileName), fEncoding);
-        try {
-            while (scanner.hasNextLine()) {
-                text.append(scanner.nextLine() + NL);
-            }
-        } finally {
-            scanner.close();
-        }
-        print("Text: " + text);
-    }
+	public StringBuilder read() throws IOException {
+		StringBuilder text = new StringBuilder();
+		String NL = System.getProperty("line.separator");
+		Scanner scanner = new Scanner(new FileInputStream(fFileName), fEncoding);
+		try {
+			while (scanner.hasNextLine()) {
+				text.append(scanner.nextLine() + NL);
+			}
+		} finally {
+			scanner.close();
+		}
 
-    void Overwrite(String Text) throws IOException {
-        print("Datei wird überschrieben " + fFileName);
-        Writer out = new OutputStreamWriter(new FileOutputStream(fFileName), fEncoding);
-        try {
-            out.write(Text);
-        } finally {
-            out.close();
-        }
-    }
+		return text;
+	}
 
-    // Hilfsmethode, weil ich zu faul war immer System usw zu schreiben
-    private void print(String aMessage) {
-        System.out.println(aMessage);
-    }
+	void Overwrite(String Text) throws IOException {
+		print("Datei wird überschrieben " + fFileName);
+		Writer out = new OutputStreamWriter(new FileOutputStream(fFileName),
+				fEncoding);
+		try {
+			out.write(Text);
+		} finally {
+			out.close();
+		}
+	}
+
+	// Hilfsmethode, weil ich zu faul war immer System usw zu schreiben
+	private void print(String aMessage) {
+		System.out.println(aMessage);
+	}
 
 }

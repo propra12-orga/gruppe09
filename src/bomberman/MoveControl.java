@@ -9,157 +9,103 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class MoveControl extends JPanel implements KeyListener {
+
 	private Figure figure1;
-	private Figure2 figure2;
-	private MoveThread moveLeftThread;
-	private MoveThread moveRightThread;
-	private MoveThread moveUpThread;
-	private MoveThread moveDownThread;
-	private MoveThreadFigure2 moveLeftThreadFigure2;
-	private MoveThreadFigure2 moveRightThreadFigure2;
-	private MoveThreadFigure2 moveUpThreadFigure2;
-	private MoveThreadFigure2 moveDownThreadFigure2;
+	private Figure figure2;
+	private stargate OpenWindow;
 
-	private Field POS;
-
-	public MoveControl(Figure figure1, Figure2 figure2) {
+	public MoveControl(Figure figure1, Figure figure2) {
 		this.figure1 = figure1;
 		this.figure2 = figure2;
 		addKeyListener(this);
-		POS = Bomberman.getPos();
+
 	}
 
 	public void keyPressed(KeyEvent evt) {
+
 		int keyCode = evt.getKeyCode();
-		if (keyCode == KeyEvent.VK_LEFT) {// Startet die MoveThreads für linke
-			// Kann später im Spieler zusammen gefasst werden
-			if ((figure1.IsAtLeftBorder() == false)) {
-				if (moveLeftThread == null) {
-					moveLeftThread = new MoveThread(this.figure1, "left");
-					moveLeftThread.start();
-				}
-				if (!moveLeftThread.isAlive()) {
-					moveLeftThread = new MoveThread(this.figure1, "left");
-					moveLeftThread.start();
-				}
-
-			} else
-				System.out.println("Grenze erreicht, es geht nicht weiter");
-			// System.out.println("Links");
+		if ((keyCode == KeyEvent.VK_LEFT)
+				&& (Playground.field[Playground.getZeile()][Playground
+						.getSpalte() - 1].isaccessible())) {// Startet die
+															// MoveThreads
+			if (Playground.field[Playground.getZeile()][Playground.getSpalte() - 1]
+					.isStargate()) {
+				stargate endgame = new stargate();
+			}
+			figure1.move("left");
+			Playground.setSpalte(Playground.getSpalte() - 1);
 		}
-		if (keyCode == KeyEvent.VK_RIGHT) {// Startet die MoveThreads für rechte
-											// Bewegungsrichtung
+		// System.out.println("Links");
 
-			if ((figure1.IsAtRightBorder() == false)) {
-				if (moveRightThread == null) {
-					moveRightThread = new MoveThread(this.figure1, "right");
-					moveRightThread.start();
-				}
-				if (!moveRightThread.isAlive()) {
+		if ((keyCode == KeyEvent.VK_RIGHT)
+				&& (Playground.field[Playground.getZeile()][Playground
+						.getSpalte() + 1].isaccessible())) // Bewegungsrichtung
+		{
+			if (Playground.field[Playground.getZeile()][Playground.getSpalte() + 1]
+					.isStargate()) {
+				stargate endgame = new stargate();
+			}
+			figure1.move("right");
+			Playground.setSpalte(Playground.getSpalte() + 1);
 
-					moveRightThread = new MoveThread(this.figure1, "right");
-
-					moveRightThread.start();
-				}// Kann später im Spieler zusammen gefasst werden
-			} else
-				System.out.println("Grenze erreicht, es geht nicht weiter");
 		}
 
-		if (keyCode == KeyEvent.VK_UP) {// Startet die MoveThreads für obere
-										// Bewegungsrichtung
-			if (moveUpThread == null) {
-				moveUpThread = new MoveThread(figure1, "up");
-				moveUpThread.start();
+		if ((keyCode == KeyEvent.VK_UP)
+				&& (Playground.field[Playground.getZeile() - 1][Playground
+						.getSpalte()].isaccessible())) {// Startet die
+														// MoveThreads für obere
+			// Bewegungsrichtung
+			if (Playground.field[Playground.getZeile() - 1][Playground
+					.getSpalte()].isStargate()) {
+				stargate endgame = new stargate();
 			}
-			if (!moveUpThread.isAlive()) {
+			figure1.move("up");
+			Playground.setZeile(Playground.getZeile() - 1);
 
-				moveUpThread = new MoveThread(figure1, "up");
-
-				moveUpThread.start();
-			}
-
-			// Kann später im Spieler zusammen gefasst werden
-			else
-				System.out.println("Grenze erreicht, es geht nicht weiter");
+			// else
+			// System.out.println("Grenze erreicht, es geht nicht weiter");
 			// System.out.println("Oben");
 		}
 
-		if (keyCode == KeyEvent.VK_DOWN) {// Startet die MoveThreads für
-											// untere
-											// Bewegungsrichtung
+		if ((keyCode == KeyEvent.VK_DOWN)
+				&& (Playground.field[Playground.getZeile() + 1][Playground
+						.getSpalte()].isaccessible())) {
+			if (Playground.field[Playground.getZeile() + 1][Playground
+					.getSpalte()].isStargate()) {
+				stargate endgame = new stargate();
+			}
+			figure1.move("down");
+			Playground.setZeile(Playground.getZeile() + 1);
 
-			// Kann später im Spieler zusammen gefasst werden
-			if ((figure1.IsAtBottomBorder() == false)) {
+		}
 
-				if (moveDownThread == null) {
-					moveDownThread = new MoveThread(this.figure1, "down");
-					moveDownThread.start();
+		if (keyCode == KeyEvent.VK_Z) {
+			for (int i = 0; i != 10; i++) {
+				for (int j = 0; j != 10; j++) {
+					if (Playground.field[i][j].isHiddenstargate() == true)
+						SettingProperties.stargate(j, i);
 				}
-				if (!moveDownThread.isAlive()) {
-
-					moveDownThread = new MoveThread(this.figure1, "down");
-
-					moveDownThread.start();
-				}
-
-			} else
-				System.out.println("Grenze erreicht, es geht nicht weiter");
-			// System.out.println("Unten");
+			}
 		}
 
 		if (keyCode == KeyEvent.VK_A) {// Startet die MoveThreads für linke
 			// Bewegungsrichtung
-			if (moveLeftThreadFigure2 == null) {
-				moveLeftThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"left");
-				moveLeftThreadFigure2.start();
-			}
-			if (!moveLeftThreadFigure2.isAlive()) {
-				moveLeftThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"left");
-				moveLeftThreadFigure2.start();
-			}
+			figure2.move("left");
 			System.out.println("Links");
 		}
 		if (keyCode == KeyEvent.VK_D) {// Startet die MoveThreads für linke
 			// Bewegungsrichtung
-			if (moveRightThreadFigure2 == null) {
-				moveRightThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"right");
-				moveRightThreadFigure2.start();
-			}
-			if (!moveRightThreadFigure2.isAlive()) {
-				moveRightThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"right");
-				moveRightThreadFigure2.start();
-			}
+			figure2.move("right");
 			System.out.println("Rechts");
 		}
 		if (keyCode == KeyEvent.VK_W) {// Startet die MoveThreads für linke
 			// Bewegungsrichtung
-			if (moveUpThreadFigure2 == null) {
-				moveUpThreadFigure2 = new MoveThreadFigure2(this.figure2, "up");
-				moveUpThreadFigure2.start();
-			}
-			if (!moveUpThreadFigure2.isAlive()) {
-				moveUpThreadFigure2 = new MoveThreadFigure2(this.figure2, "up");
-				moveUpThreadFigure2.start();
-			}
+			figure2.move("up");
 			System.out.println("Oben");
 		}
 		if (keyCode == KeyEvent.VK_S) {// Startet die MoveThreads für linke
 			// Bewegungsrichtung
-			if (moveDownThreadFigure2 == null) {
-				moveDownThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"down");
-				moveDownThreadFigure2.start();
-			}
-			if (!moveDownThreadFigure2.isAlive()) {
-				moveDownThreadFigure2 = new MoveThreadFigure2(this.figure2,
-						"down");
-				moveDownThreadFigure2.start();
-			}
-
+			figure2.move("down");
 			System.out.println("Unten");
 		}
 
@@ -167,48 +113,6 @@ public class MoveControl extends JPanel implements KeyListener {
 
 	public void keyReleased(KeyEvent evt) {// Beendet die eben gestarteten
 											// MoveThreads
-		int keyCode = evt.getKeyCode();
-		if (keyCode == KeyEvent.VK_LEFT) {
-			if (moveLeftThread != null) {
-				moveLeftThread.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_RIGHT) {
-			if (moveRightThread != null) {
-				moveRightThread.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_UP) {
-			if (moveUpThread != null) {
-				moveUpThread.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_DOWN) {
-			if (moveDownThread != null) {
-				moveDownThread.interrupt();
-			}
-		}
-
-		if (keyCode == KeyEvent.VK_A) {
-			if (moveLeftThreadFigure2 != null) {
-				moveLeftThreadFigure2.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_D) {
-			if (moveRightThreadFigure2 != null) {
-				moveRightThreadFigure2.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_W) {
-			if (moveUpThreadFigure2 != null) {
-				moveUpThreadFigure2.interrupt();
-			}
-		}
-		if (keyCode == KeyEvent.VK_S) {
-			if (moveDownThreadFigure2 != null) {
-				moveDownThreadFigure2.interrupt();
-			}
-		}
 	}
 
 	public void keyTyped(KeyEvent evt) {
