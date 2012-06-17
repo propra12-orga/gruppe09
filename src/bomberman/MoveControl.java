@@ -8,6 +8,12 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+/**
+ * Die Klasse steuert die Figur(en). 
+ * @author Natalie
+ * @version 17/06/12
+ *
+ */
 public class MoveControl extends JPanel implements KeyListener {
 
 	private Figure figure1;
@@ -21,6 +27,15 @@ public class MoveControl extends JPanel implements KeyListener {
 
 	}
 
+	/**
+	 * Die Methode keyPressed verarbeitet den eigegebenen Befehl. Dafür wird die Position 
+	 * des Feldes ermittelt sowie ob es sich dabei um ein begehbares Feld handelt. 
+	 * Ist das zu betretende Feld das Portal, so ist das Spiel gewonnen, 
+	 * andernfalls bewegt sich die Figur um ein Feld nach rechts, links, oben oder
+	 * unten. 
+	 * In den letzten 4 if-Anweisungen werden die MoveThreads für Bewegungsrichtungen
+	 * gestartet.
+	 */
 	public void keyPressed(KeyEvent evt) {
 
 		int keyCode = evt.getKeyCode();
@@ -87,13 +102,13 @@ public class MoveControl extends JPanel implements KeyListener {
 				}
 			}
 		}
-
-		if (keyCode == KeyEvent.VK_A) {// Startet die MoveThreads für linke
-			// Bewegungsrichtung
+		
+		if (keyCode == KeyEvent.VK_A) { //Startet die MoveThreads für die linke
+			//Bewegungsrichtung. 
 			figure2.move("left");
 			System.out.println("Links");
 		}
-		if (keyCode == KeyEvent.VK_D) {// Startet die MoveThreads für linke
+		if (keyCode == KeyEvent.VK_D) {// Startet die MoveThreads für rechte
 			// Bewegungsrichtung
 			figure2.move("right");
 			System.out.println("Rechts");
@@ -110,9 +125,10 @@ public class MoveControl extends JPanel implements KeyListener {
 		}
 
 	}
-
-	public void keyReleased(KeyEvent evt) {// Beendet die eben gestarteten
-											// MoveThreads
+	/**
+	 * Beendet die gestarteten MoveThreads.
+	 */
+	public void keyReleased(KeyEvent evt) {
 	}
 
 	public void keyTyped(KeyEvent evt) {
