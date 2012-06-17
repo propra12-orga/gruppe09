@@ -18,6 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+/**
+ * Die Klasse initialisiert das Portal. Sie ermöglicht das Beenden des Spiels sowie das
+ * Starten eines neuen Spiels. 
+ * @author Lukas
+ * @version 17/06/2012
+ *
+ */
 public class stargate extends JFrame {
 	private EndGame endgame = new EndGame();
 	private JButton StartnewGame = new JButton("Neues Spiel starten");
@@ -67,6 +74,9 @@ public class stargate extends JFrame {
 class EndGame extends JComponent {
 	private Image Figure1Wins;
 
+	/**
+	 * Setzt ein neues Bild, falls ein Spieler gewinnt. 
+	 */
 	public void setImage() {
 		Figure1Wins = (Toolkit.getDefaultToolkit().getImage(this.getClass()
 				.getResource("grafics/player/1/win.png")));
