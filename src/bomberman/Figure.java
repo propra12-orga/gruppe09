@@ -10,8 +10,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-/** 
- * Die Klasse repräsentiert die Spielerfigur. Klassenvariablen werden initialisiert. 
+/**
+ * Die Klasse repräsentiert die Spielerfigur. Klassenvariablen werden
+ * initialisiert.
  * 
  * @author Natalie
  * @version 17/06/12
@@ -26,8 +27,11 @@ public class Figure extends JPanel {
 
 	/**
 	 * Klassenkontruktor
-	 * @param x Aktuelle Position auf der x-Achse
-	 * @param y Aktuelle Position auf der y-Achse
+	 * 
+	 * @param x
+	 *            Aktuelle Position auf der x-Achse
+	 * @param y
+	 *            Aktuelle Position auf der y-Achse
 	 * @param c
 	 */
 	public Figure(int x, int y, int c) {
@@ -40,13 +44,13 @@ public class Figure extends JPanel {
 					this.getClass().getResource("grafics/player/1/down.png"));
 		} else if (c == 1) {
 			picOfFigure = Toolkit.getDefaultToolkit().getImage(
-					this.getClass().getResource("grafics/player/3/down.png"));
+					this.getClass().getResource("grafics/player/4/down.png"));
 		}
 	}
 
 	/**
-	 * Die Methode paint stellt fest, ob die Figur existiert und gibt die Figur 
-	 * an einer bestimmten Stelle wieder. 
+	 * Die Methode paint stellt fest, ob die Figur existiert und gibt die Figur
+	 * an einer bestimmten Stelle wieder.
 	 */
 	public void paint(Graphics g) {
 
@@ -55,14 +59,15 @@ public class Figure extends JPanel {
 			figureThread.start();
 		}
 	}
-	
+
 	/**
-	 * Die Methode move regelt die Bewegung der Spielerfigur(en). Es wird 
-	 * zuerst die eingebene Richtung überprüft, dann,  ob es sich bei dem
-	 * nächsten Feld um eine Grenze handelt und falls die nicht zutrifft, wird die 
-	 * Figur auf dieses Feld bewegt. 
+	 * Die Methode move regelt die Bewegung der Spielerfigur(en). Es wird zuerst
+	 * die eingebene Richtung überprüft, dann, ob es sich bei dem nächsten Feld
+	 * um eine Grenze handelt und falls die nicht zutrifft, wird die Figur auf
+	 * dieses Feld bewegt.
 	 * 
-	 * @param direction Eingebene Richtung. 
+	 * @param direction
+	 *            Eingebene Richtung.
 	 */
 	public void move(String direction) {
 
@@ -96,8 +101,10 @@ public class Figure extends JPanel {
 
 		}
 	}
+
 	/**
 	 * Gibt Position der Figur auf der x-Achse zurück.
+	 * 
 	 * @return positionX
 	 */
 	public int getPositionX() {
@@ -106,6 +113,7 @@ public class Figure extends JPanel {
 
 	/**
 	 * Gibt Position der Figur auf der y-Achse zurück.
+	 * 
 	 * @return positionY
 	 */
 	public int getPositionY() {
@@ -114,6 +122,7 @@ public class Figure extends JPanel {
 
 	/**
 	 * Gibt die Geschwindigkeit der Figur zurück.
+	 * 
 	 * @return speed
 	 */
 	public int getSpeed() {
@@ -121,16 +130,21 @@ public class Figure extends JPanel {
 	}
 
 	/**
-	 * Berechnet die Position der Figur auf der x-Achse und der y-Achse. 
-	 * @param x Position auf der x-Achse.
-	 * @param y Position auf der y-Achse.
+	 * Berechnet die Position der Figur auf der x-Achse und der y-Achse.
+	 * 
+	 * @param x
+	 *            Position auf der x-Achse.
+	 * @param y
+	 *            Position auf der y-Achse.
 	 */
 	public void setPosition(int x, int y) {
 		positionX = x;
 		positionY = y;
 	}
+
 	/**
-	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt. 
+	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt.
+	 * 
 	 * @return true oder false
 	 */
 	public boolean IsAtLeftBorder() {
@@ -141,9 +155,10 @@ public class Figure extends JPanel {
 		}
 
 	}
-	
+
 	/**
-	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt. 
+	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt.
+	 * 
 	 * @return true oder false
 	 */
 	public boolean IsAtRightBorder() {
@@ -156,7 +171,8 @@ public class Figure extends JPanel {
 	}
 
 	/**
-	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt. 
+	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt.
+	 * 
 	 * @return true oder false
 	 */
 	public boolean IsAtUpperBorder() {
@@ -169,7 +185,8 @@ public class Figure extends JPanel {
 	}
 
 	/**
-	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt. 
+	 * Überprüft, ob es sich bei einer Position um eine Feldgrenze handelt.
+	 * 
 	 * @return true oder false
 	 */
 	public boolean IsAtBottomBorder() {

@@ -11,14 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- * Die Klasse erzeugt eine Spielfläche. 
+ * Die Klasse erzeugt eine Spielfläche.
+ * 
  * @author Natalie
  * @version 17/06/12
- *
+ * 
  */
 public class Playground {
 
-	private static int zeile = 1, spalte = 1, zeile2 = 8, spalte2 = 8;
+	private static int zeile = 1, spalte = 1, zeile2 = 9, spalte2 = 9;
 
 	static ImageIcon icon_Border = new ImageIcon(Toolkit.getDefaultToolkit()
 			.getImage(Playground.class.getResource("grafics/map/block.png")));
@@ -27,16 +28,16 @@ public class Playground {
 	static ImageIcon icon_Door = new ImageIcon(Toolkit.getDefaultToolkit()
 			.getImage(Playground.class.getResource("grafics/map/door.png")));
 	private static int numberOfImages = Bomberman.numberOfFields + 2;
-	
-	
+
 	public static FeldElement field[][] = new FeldElement[numberOfImages][numberOfImages];
 	static Figure figure1;
 	static Figure figure2;
-	
+
 	/**
 	 * Das Spielfeld wird auf einem 2D-Array erzeugt. Es wird eine doppelte
-	 * for-Schleife durchlaufen wobei die Begrenzung sowie die Spielfelder 
+	 * for-Schleife durchlaufen wobei die Begrenzung sowie die Spielfelder
 	 * erzeugt werden.
+	 * 
 	 * @param backgroundPanel
 	 */
 	public static JPanel createPlayground(JPanel backgroundPanel) {
@@ -61,10 +62,11 @@ public class Playground {
 		return backgroundPanel;
 
 	}
-	
+
 	/**
-	 * Es wird ein Level eingelesen, auf dem die jeweiligen Feldelemente verzeichnet
-	 * sind. Wenn ein Fehler auftritt, wirft die Methode eine IOException aus. 
+	 * Es wird ein Level eingelesen, auf dem die jeweiligen Feldelemente
+	 * verzeichnet sind. Wenn ein Fehler auftritt, wirft die Methode eine
+	 * IOException aus.
 	 */
 	public static void FillUpWithWalls() {
 		// Wir lesen lvl 1 aus
@@ -74,14 +76,18 @@ public class Playground {
 			String text = StringArray.toString();
 
 			int i, j, x = 0;
-			for (i = 1; i != 10; i++) {
-				for (j = 1; j != 12; j++) {
+			for (j = 1; j != 10; j++) {
+				for (i = 1; i != 12; i++) {
 					char c = text.charAt(x);
 					if (c == 'W')
-						SettingProperties.wall(j, i);
+						SettingProperties.wall(i, j);
 					if (c == 'D') {
-						SettingProperties.hiddenstargate(j, i);
+						SettingProperties.hiddenstargate(i, j);
 					}
+					if (c == 'G')
+						SettingProperties.grass(i, j);
+					if (c == 'B')
+						SettingProperties.border(i, j);
 					x++;
 				}
 			}

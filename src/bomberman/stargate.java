@@ -19,21 +19,26 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 /**
- * Die Klasse initialisiert das Portal. Sie ermöglicht das Beenden des Spiels sowie das
- * Starten eines neuen Spiels. 
+ * Die Klasse initialisiert das Portal. Sie ermöglicht das Beenden des Spiels
+ * sowie das Starten eines neuen Spiels.
+ * 
  * @author Lukas
  * @version 17/06/2012
- *
+ * 
  */
 public class stargate extends JFrame {
-	private EndGame endgame = new EndGame();
+	private EndGameWinner endgame;
+	private EndGameLost endgameLost;
 	private JButton StartnewGame = new JButton("Neues Spiel starten");
 
-	public stargate() {
-		super("Spiel gewonnen!");
+	public stargate(boolean win, int player) {
+		super("Spiel beendet!");
 		setSize(250, 250);
-		EndGame endgame = new EndGame();
 
+		if (win == true)
+			endgame = new EndGameWinner();
+		else
+			endgameLost = new EndGameLost();
 		Container c = this.getContentPane();
 
 		GridBagLayout gbl = new GridBagLayout();
@@ -51,7 +56,7 @@ public class stargate extends JFrame {
 			e.printStackTrace();
 		}
 		sound.play();
-		endgame.setImage();
+		endgame.setImage(player);
 		setVisible(true);
 
 	}
@@ -71,15 +76,21 @@ public class stargate extends JFrame {
 	}
 }
 
-class EndGame extends JComponent {
+class EndGameWinner extends JComponent {
 	private Image Figure1Wins;
 
 	/**
-	 * Setzt ein neues Bild, falls ein Spieler gewinnt. 
+	 * Setzt ein neues Bild, falls ein Spieler gewinnt.
 	 */
-	public void setImage() {
-		Figure1Wins = (Toolkit.getDefaultToolkit().getImage(this.getClass()
-				.getResource("grafics/player/1/win.png")));
+	public void setImage(int player) {
+		if (player == 0) {
+			Figure1Wins = (Toolkit.getDefaultToolkit().getImage(this.getClass()
+					.getResource("grafics/player/1/win.png")));
+		} else {
+			Figure1Wins = (Toolkit.getDefaultToolkit().getImage(this.getClass()
+					.getResource("grafics/player/4/win.png")));
+		}
+
 		if (Figure1Wins != null)
 			repaint();
 	}
@@ -90,9 +101,28 @@ class EndGame extends JComponent {
 	}
 }
 
+class EndGameLost extends JComponent {
+	private Image image;
+
+	/**
+	 * Setzt ein neues Bild, falls ein Spieler gewinnt.
+	 */
+	public void setImage() {
+		image = (Toolkit.getDefaultToolkit().getImage(this.getClass()
+				.getResource("grafics/player/4/win.png")));
+		if (image != null)
+			repaint();
+	}
+
+	protected void paintComponent(Graphics g) {
+		if (image != null)
+			g.drawImage(image, 0, 0, this);
+	}
+}
+
 class ActionListenerStartNewGame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
-		Bomberman.starteSingleplayer();
+		Bomberman.resetPositions();
 
 	}
 }
