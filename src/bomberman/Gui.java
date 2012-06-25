@@ -26,6 +26,8 @@ public class Gui extends JFrame {
 	private JMenu fileMenu;
 	private JMenuItem singleplayerMenuItem;
 	private JMenuItem multiplayerMenuItem;
+	private JMenuItem SaveMenuItem;
+	private JMenuItem LoadMenuItem;
 	private JMenuItem optionsMenuItem;
 	private JMenuItem highscoreMenuItem;
 	private JMenuItem exitMenuItem;
@@ -53,6 +55,8 @@ public class Gui extends JFrame {
 		fileMenu = new JMenu();
 		singleplayerMenuItem = new JMenuItem();
 		multiplayerMenuItem = new JMenuItem();
+		SaveMenuItem = new JMenuItem();
+		LoadMenuItem = new JMenuItem();
 		optionsMenuItem = new JMenuItem();
 		highscoreMenuItem = new JMenuItem();
 		exitMenuItem = new JMenuItem();
@@ -87,6 +91,24 @@ public class Gui extends JFrame {
 		});
 		fileMenu.add(multiplayerMenuItem);
 
+		SaveMenuItem.setMnemonic('S');
+		SaveMenuItem.setText("Speichern");
+		SaveMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				SaveMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(SaveMenuItem);
+
+		LoadMenuItem.setMnemonic('L');
+		LoadMenuItem.setText("Laden");
+		LoadMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				LoadMenuItemActionPerformed(evt);
+			}
+		});
+		fileMenu.add(LoadMenuItem);
+
 		optionsMenuItem.setMnemonic('o');
 		optionsMenuItem.setText("Options");
 		optionsMenuItem.addActionListener(new ActionListener() {
@@ -94,6 +116,7 @@ public class Gui extends JFrame {
 				optionsMenuItem1ActionPerformed(evt);
 			}
 		});
+
 		fileMenu.add(optionsMenuItem);
 
 		highscoreMenuItem.setMnemonic('h');
@@ -153,6 +176,17 @@ public class Gui extends JFrame {
 
 		backgroundPanel = Playground.createPlayground(backgroundPanel);
 		add(backgroundPanel);
+
+	}
+
+	protected void LoadMenuItemActionPerformed(ActionEvent evt) {
+		Bomberman.starteSingleplayer();
+		SaveLoad.Load(Bomberman.GetFigure1());
+
+	}
+
+	protected void SaveMenuItemActionPerformed(ActionEvent evt) {
+		SaveLoad.Save();
 
 	}
 

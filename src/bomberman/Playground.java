@@ -5,6 +5,7 @@
 package bomberman;
 
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -68,11 +69,12 @@ public class Playground {
 	 * verzeichnet sind. Wenn ein Fehler auftritt, wirft die Methode eine
 	 * IOException aus.
 	 */
-	public static void FillUpWithWalls() {
-		// Wir lesen lvl 1 aus
-		ReadInOut file = new ReadInOut("level1.txt");
+
+	public static void FillUpWithWalls() { // Wir lesen lvl 1 aus
+		File file = new File("level1.txt");
+		ReadInOut ReadedFile = new ReadInOut(file);
 		try {
-			StringBuilder StringArray = file.read();
+			StringBuilder StringArray = ReadedFile.read();
 			String text = StringArray.toString();
 
 			int i, j, x = 0;
@@ -92,8 +94,7 @@ public class Playground {
 				}
 			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

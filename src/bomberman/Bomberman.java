@@ -76,7 +76,8 @@ public class Bomberman {
 	 */
 	private static void resetPosition() {
 		figure1.setPosition(30, 30);
-		// fields muss hier noch zurueck gesetzt werden
+		Playground.setSpalte(1);
+		Playground.setZeile(1);
 	}
 
 	/**
@@ -84,8 +85,11 @@ public class Bomberman {
 	 */
 	static void resetPositions() {
 		figure1.setPosition(30, 30);
+		Playground.setSpalte(1);
+		Playground.setZeile(1);
 		figure2.setPosition(270, 270);
-		// fields muss hier noch zurueck gesetzt werden
+		Playground.setSpalte2(9);
+		Playground.setZeile2(9);
 	}
 
 	public static boolean IsSingleplayer() {
@@ -101,6 +105,11 @@ public class Bomberman {
 			return true;
 		else
 			return false;
+
+	}
+
+	public static Figure GetFigure1() {
+		return figure1;
 
 	}
 }

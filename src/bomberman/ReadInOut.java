@@ -1,5 +1,6 @@
 package bomberman;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,10 +23,10 @@ import java.util.Scanner;
 public class ReadInOut {
 
 	// Attributdeklaration
-	private static String fFileName;
+	private static File fFileName;
 	private static String fEncoding;
 
-	ReadInOut(String aFileName) {
+	ReadInOut(File aFileName) {
 		fEncoding = "UTF-8";// Standart UTF-8 Kann ge‰ndert werden, weiﬂ aber
 							// net wieso wir das machen sollten
 		fFileName = aFileName;
