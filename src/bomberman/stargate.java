@@ -29,35 +29,109 @@ import javax.swing.JFrame;
 public class stargate extends JFrame {
 	private EndGameWinner endgame;
 	private EndGameLost endgameLost;
+	private EndGameDraw EndGameDraw;
 	private JButton StartnewGame = new JButton("Neues Spiel starten");
 
-	public stargate(boolean win, int player) {
+	public stargate(boolean win, int player, boolean draw) {
 		super("Spiel beendet!");
 		setSize(250, 250);
+		if (Bomberman.IsSingleplayer() == true)
+			EndSinglePlayer(win, player);
+		else if (Bomberman.IsMultiplayer() == true)
+			EndMultiPlayer(win, player, draw);
+	}
 
-		if (win == true)
+	public void EndSinglePlayer(boolean win, int player) {
+		if (win == true) {
 			endgame = new EndGameWinner();
-		else
+			Container c = this.getContentPane();
+
+			GridBagLayout gbl = new GridBagLayout();
+			c.setLayout(gbl);
+
+			addComponent(c, gbl, endgame, 0, 0, 5, 2, 1.0, 1.0);
+			addComponent(c, gbl, StartnewGame, 2, 3, 1, 1, 0, 0);
+			StartnewGame.addActionListener(new ActionListenerStartNewGame());
+			File f = new File("win.wav");
+			AudioClip sound = null;
+			try {
+				sound = Applet.newAudioClip(f.toURL());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sound.play();
+			endgame.setImage(player);
+			setVisible(true);
+		} else if (win == false) {
 			endgameLost = new EndGameLost();
-		Container c = this.getContentPane();
 
-		GridBagLayout gbl = new GridBagLayout();
-		c.setLayout(gbl);
+			Container c = this.getContentPane();
 
-		addComponent(c, gbl, endgame, 0, 0, 5, 2, 1.0, 1.0);
-		addComponent(c, gbl, StartnewGame, 2, 3, 1, 1, 0, 0);
-		StartnewGame.addActionListener(new ActionListenerStartNewGame());
-		File f = new File("win.wav");
-		AudioClip sound = null;
-		try {
-			sound = Applet.newAudioClip(f.toURL());
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			GridBagLayout gbl = new GridBagLayout();
+			c.setLayout(gbl);
+
+			addComponent(c, gbl, endgameLost, 0, 0, 5, 2, 1.0, 1.0);
+			addComponent(c, gbl, StartnewGame, 2, 3, 1, 1, 0, 0);
+			StartnewGame.addActionListener(new ActionListenerStartNewGame());
+			File f = new File("lost.wav");
+			AudioClip sound = null;
+			try {
+				sound = Applet.newAudioClip(f.toURL());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sound.play();
+			endgameLost.setImage();
+			setVisible(true);
 		}
-		sound.play();
-		endgame.setImage(player);
-		setVisible(true);
+	}
+
+	public void EndMultiPlayer(boolean win, int player, boolean draw) {
+		if (draw == true) {
+			EndGameDraw = new EndGameDraw();
+			Container c = this.getContentPane();
+
+			GridBagLayout gbl = new GridBagLayout();
+			c.setLayout(gbl);
+
+			addComponent(c, gbl, EndGameDraw, 0, 0, 5, 2, 1.0, 1.0);
+			addComponent(c, gbl, StartnewGame, 2, 3, 1, 1, 0, 0);
+			StartnewGame.addActionListener(new ActionListenerStartNewGame());
+			File f = new File("win.wav");
+			AudioClip sound = null;
+			try {
+				sound = Applet.newAudioClip(f.toURL());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sound.play();
+			EndGameDraw.setImage();
+			setVisible(true);
+		} else if (win == true) {
+			endgame = new EndGameWinner();
+			Container c = this.getContentPane();
+
+			GridBagLayout gbl = new GridBagLayout();
+			c.setLayout(gbl);
+
+			addComponent(c, gbl, endgame, 0, 0, 5, 2, 1.0, 1.0);
+			addComponent(c, gbl, StartnewGame, 2, 3, 1, 1, 0, 0);
+			StartnewGame.addActionListener(new ActionListenerStartNewGame());
+			File f = new File("win.wav");
+			AudioClip sound = null;
+			try {
+				sound = Applet.newAudioClip(f.toURL());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sound.play();
+			endgame.setImage(player);
+			setVisible(true);
+		}
 
 	}
 
@@ -105,11 +179,11 @@ class EndGameLost extends JComponent {
 	private Image image;
 
 	/**
-	 * Setzt ein neues Bild, falls ein Spieler gewinnt.
+	 * Setzt ein neues Bild, falls ein Spieler verliertg.
 	 */
 	public void setImage() {
 		image = (Toolkit.getDefaultToolkit().getImage(this.getClass()
-				.getResource("grafics/player/4/win.png")));
+				.getResource("grafics/gameend/sp_lost.png")));
 		if (image != null)
 			repaint();
 	}
@@ -117,6 +191,26 @@ class EndGameLost extends JComponent {
 	protected void paintComponent(Graphics g) {
 		if (image != null)
 			g.drawImage(image, 0, 0, this);
+	}
+}
+
+class EndGameDraw extends JComponent {
+	private Image ImageDraw;
+
+	/**
+	 * Setzt ein neues Bild, falls ein Spieler gewinnt.
+	 */
+	public void setImage() {
+		ImageDraw = (Toolkit.getDefaultToolkit().getImage(this.getClass()
+				.getResource("grafics/gameend/draw.png")));
+
+		if (ImageDraw != null)
+			repaint();
+	}
+
+	protected void paintComponent(Graphics g) {
+		if (ImageDraw != null)
+			g.drawImage(ImageDraw, 0, 0, this);
 	}
 }
 

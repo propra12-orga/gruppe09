@@ -24,6 +24,7 @@ public class SettingProperties {
 		Playground.field[xPos][yPos]
 				.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(
 						Playground.class.getResource("grafics/map/grass.jpg"))));
+		Playground.field[xPos][yPos].setType('G');
 		Playground.field[xPos][yPos].setaccessible(true);
 		Playground.field[xPos][yPos].setStargate(false);
 		Playground.field[xPos][yPos].setDestroyable(false);
@@ -44,6 +45,7 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
 						Playground.class.getResource("grafics/map/door.png"))));
+		Playground.field[xPos][yPos].setType('S');
 		Playground.field[xPos][yPos].setaccessible(true);
 		Playground.field[xPos][yPos].setStargate(true);
 		Playground.field[xPos][yPos].setDestroyable(false);
@@ -64,6 +66,7 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
 						Playground.class.getResource("grafics/map/box.png"))));
+		Playground.field[xPos][yPos].setType('D');
 		Playground.field[xPos][yPos].setaccessible(false);
 		Playground.field[xPos][yPos].setStargate(false);
 		Playground.field[xPos][yPos].setHiddenstargate(true);
@@ -85,6 +88,7 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
 						Playground.class.getResource("grafics/map/box.png"))));
+		Playground.field[xPos][yPos].setType('W');
 		Playground.field[xPos][yPos].setaccessible(false);
 		Playground.field[xPos][yPos].setStargate(false);
 		Playground.field[xPos][yPos].setDestroyable(true);
@@ -105,6 +109,7 @@ public class SettingProperties {
 		Playground.field[xPos][yPos]
 				.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(
 						Playground.class.getResource("grafics/map/block.png"))));
+		Playground.field[xPos][yPos].setType('B');
 		Playground.field[xPos][yPos].setaccessible(false);
 		Playground.field[xPos][yPos].setStargate(false);
 		Playground.field[xPos][yPos].setDestroyable(false);

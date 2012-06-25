@@ -1,8 +1,6 @@
-
 package bomberman;
 
 import java.io.FileInputStream;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -10,17 +8,16 @@ import java.io.Writer;
 import java.util.Scanner;
 
 /**
- * Die Klasse dient dem Auslesen und Speichern von Dateien (zB level1.txt). Zum Benutzen
- * muss ein neuer Typ der Klasse ReadInOut erzeugt werden. 
- * Beispiel für Erzeugung der ReadInOut-Klasse: 
- * String fileName = "test.txt";
- * ReadInOut test = new ReadInOut(fileName);
+ * Die Klasse dient dem Auslesen und Speichern von Dateien (zB level1.txt). Zum
+ * Benutzen muss ein neuer Typ der Klasse ReadInOut erzeugt werden. Beispiel für
+ * Erzeugung der ReadInOut-Klasse: String fileName = "test.txt"; ReadInOut test
+ * = new ReadInOut(fileName);
  * 
  * Danach kann man die Methoden Read oder Overwrite ganz normal aufrufen.
  * 
  * @author Lukas
  * @version 17/06/12
- *
+ * 
  */
 public class ReadInOut {
 
@@ -36,6 +33,7 @@ public class ReadInOut {
 
 	/**
 	 * Gibt derzeit den eingelesen Text auf der Konsole aus.
+	 * 
 	 * @return String
 	 * @throws IOException
 	 */
@@ -53,14 +51,27 @@ public class ReadInOut {
 
 		return text;
 	}
+
 	/**
-	 * Benötigt einen Parameter des Types String, diesen schreibt er dann  in die Datei.
-	 * Achtung! Diese Funktion überschreibt die gesamte Datei, der Rest geht verloren.
+	 * Benötigt einen Parameter des Types String, diesen schreibt er dann in die
+	 * Datei. Achtung! Diese Funktion überschreibt die gesamte Datei, der Rest
+	 * geht verloren.
+	 * 
 	 * @param Text
 	 * @throws IOException
 	 */
 	void Overwrite(String Text) throws IOException {
 		print("Datei wird überschrieben " + fFileName);
+		Writer out = new OutputStreamWriter(new FileOutputStream(fFileName),
+				fEncoding);
+		try {
+			out.write(Text);
+		} finally {
+			out.close();
+		}
+	}
+
+	void Save(String Text) throws IOException {
 		Writer out = new OutputStreamWriter(new FileOutputStream(fFileName),
 				fEncoding);
 		try {

@@ -14,18 +14,26 @@ package bomberman;
 
 public class EndGame {
 
-	public static void EndtheGame(boolean Win, boolean selfkill) {
+	public static void EndtheGame(boolean Win, boolean selfkillplayer1,
+			boolean selfkillplayer2, boolean draw) {
 
 		if (Bomberman.IsSingleplayer()) {
 
 			stargate endgame;
 			if (Win == true)
-				endgame = new stargate(true, 0);
-			if (selfkill == true)
-				endgame = new stargate(false, 0);
+				endgame = new stargate(true, 0, false);
+			if (selfkillplayer1 == true)
+				endgame = new stargate(false, 0, false);
 
 		} else if (Bomberman.IsMultiplayer()) {
 
+			stargate endgame;
+			if (draw == true)
+				endgame = new stargate(false, 0, true);
+			else if (selfkillplayer1 == true)
+				endgame = new stargate(true, 1, false);
+			else if (selfkillplayer2 == true)
+				endgame = new stargate(true, 0, false);
 		}
 
 	}

@@ -49,7 +49,7 @@ public class MoveControl extends JPanel implements KeyListener {
 				// MoveThreads
 				if (Playground.field[Playground.getSpalte() - 1][Playground
 						.getZeile()].isStargate()) {
-					EndGame.EndtheGame(true, false);
+					EndGame.EndtheGame(true, false, false, false);
 				}
 				figure1.move("left");
 				Playground.setSpalte(Playground.getSpalte() - 1);
@@ -67,7 +67,7 @@ public class MoveControl extends JPanel implements KeyListener {
 			{
 				if (Playground.field[Playground.getSpalte() + 1][Playground
 						.getZeile()].isStargate()) {
-					EndGame.EndtheGame(true, false);
+					EndGame.EndtheGame(true, false, false, false);
 				}
 				figure1.move("right");
 				Playground.setSpalte(Playground.getSpalte() + 1);
@@ -85,7 +85,7 @@ public class MoveControl extends JPanel implements KeyListener {
 				// Bewegungsrichtung
 				if (Playground.field[Playground.getSpalte()][Playground
 						.getZeile() - 1].isStargate()) {
-					EndGame.EndtheGame(true, false);
+					EndGame.EndtheGame(true, false, false, false);
 				}
 				figure1.move("up");
 				Playground.setZeile(Playground.getZeile() - 1);
@@ -104,7 +104,7 @@ public class MoveControl extends JPanel implements KeyListener {
 							.getZeile() + 1].isaccessible())) {
 				if (Playground.field[Playground.getSpalte()][Playground
 						.getZeile() + 1].isStargate()) {
-					EndGame.EndtheGame(true, false);
+					EndGame.EndtheGame(true, false, false, false);
 				}
 				figure1.move("down");
 				Playground.setZeile(Playground.getZeile() + 1);
@@ -116,12 +116,7 @@ public class MoveControl extends JPanel implements KeyListener {
 			}
 
 			if (keyCode == KeyEvent.VK_Z) {
-				for (int i = 0; i != 10; i++) {
-					for (int j = 0; j != 10; j++) {
-						if (Playground.field[i][j].isHiddenstargate() == true)
-							SettingProperties.stargate(i, j);
-					}
-				}
+				SaveLoad.Load(figure1);
 			}
 
 			if (keyCode == KeyEvent.VK_ENTER) {
@@ -130,7 +125,7 @@ public class MoveControl extends JPanel implements KeyListener {
 					SettingProperties.bomb1(Playground.getSpalte(),
 							Playground.getZeile());
 
-					timer.schedule(new BombTimer(1, Playground.getSpalte(),
+					timer.schedule(new BombTimer(2, Playground.getSpalte(),
 							Playground.getZeile()), 1500);
 				}
 
