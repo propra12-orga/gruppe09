@@ -17,6 +17,7 @@ import java.awt.Container;
  */
 public class Bomberman {
 	static Figure figure1, figure2;
+	static Enemy Enemy;
 
 	static Gui gui;
 	static Container contentPane;
@@ -32,6 +33,7 @@ public class Bomberman {
 		gui = new Gui();
 		gui.setVisible(true);
 		figure1 = new Figure(30, 30, 0);
+		Enemy = new Enemy(30, 210);
 		figure2 = new Figure(270, 270, 1);
 		Singleplayer = false;
 		Multiplayer = false;
@@ -39,6 +41,12 @@ public class Bomberman {
 		Container contentPane = gui.getContentPane();
 		contentPane.add(new MoveControl(figure1, figure2));
 
+	}
+
+	public static void InsertEnemys() {
+		gui.add(Enemy, 0);
+
+		gui.setVisible(true);
 	}
 
 	/**
@@ -49,7 +57,9 @@ public class Bomberman {
 	public static void starteSingleplayer() {
 		gui.setVisible(false);
 		gui.update(gui.getGraphics());
+		InsertEnemys();
 		gui.add(figure1, 0);
+		Enemy.startmoving();
 		resetPosition();
 		Singleplayer = true;
 		gui.setVisible(true);
