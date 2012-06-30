@@ -10,8 +10,8 @@ import java.awt.Container;
  * Die Klasse Bomberman initialisiert mindestens eine neue Figur und ihre
  * Position auf dem Spielfeld.
  * 
- * @author Natalie
- * @version 17/06/12
+ * @author Lukas
+ * @version 25/06/12
  * 
  * 
  */

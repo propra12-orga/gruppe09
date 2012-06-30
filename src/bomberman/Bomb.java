@@ -3,7 +3,11 @@ package bomberman;
 import java.util.Timer;
 
 public class Bomb {
-
+	/**
+	 * Die Klasse Bombe erzeugt eine Bombe.
+	 * @author Lukas
+	 * @version 25/06/2012
+	 */
 	private int rad, xPos, yPos;
 	private boolean SelfkillPlayer1, SelfkillPlayer2;
 
@@ -11,6 +15,13 @@ public class Bomb {
 
 	Timer timer = new Timer();
 
+	/**
+	 * Initialisiert eine neue Bombe mit folgenden Eingeschaften: 
+	 * @param rad Radius der Bombe.
+	 * @param xPos Position der Bombe auf der x-Achse.
+	 * @param yPos Position der Bombe auf der y-Achse.
+	 * 
+	 */
 	public Bomb(int rad, int xPos, int yPos) {
 		this.rad = rad;
 		this.xPos = xPos;
@@ -19,6 +30,12 @@ public class Bomb {
 		SelfkillPlayer2 = false;
 	}
 
+	/**
+	 * Führt eine Explosion aus. Eine Kettenreaktion der Bombenexplosionen ist möglich. Durchläuft alle Richtungen, 
+	 * oben, unten, rechts, links.
+	 * Wird einer von den Spielern getroffen, wird der Status des Selfkillplayers auf true gesetzt.
+	 * Spiel endet, wenn Spieler1 oder Spieler2 oder beide Spieler getötet werden.
+	 */
 	public void explod() {
 		if (!Playground.field[xPos][yPos].isBomb())
 			return;

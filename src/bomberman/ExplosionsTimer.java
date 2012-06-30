@@ -1,7 +1,13 @@
 package bomberman;
 
 import java.util.TimerTask;
-
+/**
+ * 
+ * 
+ * @author Lukas
+ * @version 25/06/2012
+ *
+ */
 public class ExplosionsTimer extends TimerTask {
 	private int rad, xPos, yPos;
 

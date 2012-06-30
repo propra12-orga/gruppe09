@@ -1,7 +1,3 @@
-/**
- * @author Dirk 
- * @version 04/06/12 Last Action: Move so bearbeitet, dass sich die Figur nun nicht mehr gegen die Spielinteren grenze steine steuern lässt!
- */
 package bomberman;
 
 import java.awt.Graphics;
@@ -14,8 +10,8 @@ import javax.swing.JPanel;
  * Die Klasse repräsentiert die Spielerfigur. Klassenvariablen werden
  * initialisiert.
  * 
- * @author Natalie
- * @version 17/06/12
+ * @author Lukas
+ * @version 25/06/12
  */
 
 public class Enemy extends JPanel {
@@ -92,6 +88,9 @@ public class Enemy extends JPanel {
 		positionY = y;
 	}
 
+	/**
+	 * Die Methode move steuert die Bewegungen des Spielers. 
+	 */
 	public void move() {
 		if (Direction == "Down") {
 			if (Playground.field[(positionX / 30)][(positionY / 30) + 1]

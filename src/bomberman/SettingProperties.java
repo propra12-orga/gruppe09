@@ -118,6 +118,11 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setExplosion(false);
 	}
 
+	/**
+	 * Initialisiert eine Bombe auf dem Spielfeld. 
+	 * @param xPos Position der Bombe auf der x-Achse.
+	 * @param yPos Position der Bombe auf der y-Achse.
+	 */
 	public static void bomb1(int xPos, int yPos) {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
@@ -130,6 +135,11 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setExplosion(false);
 	}
 
+	/**
+	 * Initialisert eine Explosion.
+	 * @param xPos Position der Explosion auf der x-Achse.
+	 * @param yPos Position der Explosion auf der y-Achse.
+	 */
 	public static void explosion(int xPos, int yPos) {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(

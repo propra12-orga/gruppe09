@@ -5,11 +5,19 @@ import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-
+/**
+ * Klasse zum Speichern und Laden.
+ * @author Lukas
+ * @version 25/06/2012
+ *
+ */
 public class SaveLoad extends JComponent {
 
 	static JFileChooser fc;
 
+	/**
+	 * Speichert den Spielstand in einer neuen Textdatei. 
+	 */
 	public static void Save() {
 
 		fc = new JFileChooser();
@@ -40,13 +48,18 @@ public class SaveLoad extends JComponent {
 			}
 		}
 	}
-
+	
+	/**
+	 * Liest den alten Spielstand aus der neuen .txt aus und baut damit den alten Spielstand mit sämtlichen 
+	 * Spielelementen und der Spielfigur wieder auf. 
+	 * @param Figur
+	 */
 	public static void Load(Figure Figur) {
 		fc = new JFileChooser();
 		int returnVal = fc.showOpenDialog(fc);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
-			// Überschreiben des kompletten feldes, damit es leer ist
+			// Überschreiben des kompletten Feldes, damit es leer ist
 			for (int i = 1; i != 10; i++) {
 				for (int j = 1; j != 10; j++) {
 					SettingProperties.grass(j, i);

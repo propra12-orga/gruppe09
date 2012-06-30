@@ -17,7 +17,7 @@ import java.util.Scanner;
  * Danach kann man die Methoden Read oder Overwrite ganz normal aufrufen.
  * 
  * @author Lukas
- * @version 17/06/12
+ * @version 25/06/12
  * 
  */
 public class ReadInOut {

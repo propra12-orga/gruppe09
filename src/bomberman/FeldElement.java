@@ -7,7 +7,7 @@ import javax.swing.JLabel;
  * Die Klasse initialisiert Feldelemente.
  * 
  * @author Lukas
- * @version 17/06/12
+ * @version 25/06/12
  * 
  */
 public class FeldElement extends JLabel {
@@ -155,7 +155,10 @@ public class FeldElement extends JLabel {
 	public void setHiddenstargate(boolean hiddenstargate) {
 		this.hiddenstargate = hiddenstargate;
 	}
-
+	/**
+	 * Gibt das Zeichen zurück, was für ein Feldelement steht.
+	 * @return 
+	 */
 	public char getType() {
 		return Type;
 	}

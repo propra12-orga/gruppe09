@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 /**
  * Die Klasse steuert die Figur(en).
  * 
- * @author Natalie
- * @version 17/06/12
+ * @author Lukas
+ * @version 25/06/12
  * 
  */
 public class MoveControl extends JPanel implements KeyListener {

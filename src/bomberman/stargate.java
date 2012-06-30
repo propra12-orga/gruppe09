@@ -40,7 +40,11 @@ public class stargate extends JFrame {
 		else if (Bomberman.IsMultiplayer() == true)
 			EndMultiPlayer(win, player, draw);
 	}
-
+	/**
+	 * Überprüfut, ob Spieler gewonnen hat und spielt Musik ab.
+	 * @param win
+	 * @param player
+	 */
 	public void EndSinglePlayer(boolean win, int player) {
 		if (win == true) {
 			endgame = new EndGameWinner();
@@ -87,7 +91,12 @@ public class stargate extends JFrame {
 			setVisible(true);
 		}
 	}
-
+	/**
+	 * Überprüft, ob Spieler gewonnen hat und spielt Musik ab.
+	 * @param win
+	 * @param player
+	 * @param draw
+	 */
 	public void EndMultiPlayer(boolean win, int player, boolean draw) {
 		if (draw == true) {
 			EndGameDraw = new EndGameDraw();
