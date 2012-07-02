@@ -1,12 +1,13 @@
 package bomberman;
 
 import java.util.TimerTask;
+
 /**
  * 
  * 
  * @author Lukas
  * @version 25/06/2012
- *
+ * 
  */
 public class ExplosionsTimer extends TimerTask {
 	private int rad, xPos, yPos;
@@ -57,7 +58,14 @@ public class ExplosionsTimer extends TimerTask {
 
 			else if (y >= 0 && y <= 10
 					&& Playground.field[xPos][y].isaccessible()) {
-				SettingProperties.grass(xPos, y);
+				int rand = (int) (Math.random() * 9) + 1;
+				// System.out.println(rand);
+				if (rand < 5)
+					SettingProperties.grass(xPos, y);
+				else if ((rand >= 5) && (rand < 8))
+					SettingProperties.GadgetFireUp(xPos, y);
+				else if ((rand >= 8) && (rand < 10))
+					SettingProperties.GadgetBombUp(xPos, y);
 			}
 			y++;
 		}

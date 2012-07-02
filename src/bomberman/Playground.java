@@ -41,7 +41,8 @@ public class Playground {
 	 * 
 	 * @param backgroundPanel
 	 */
-	public static JPanel createPlayground(JPanel backgroundPanel) {
+	public static JPanel createPlayground(JPanel backgroundPanel,
+			boolean withWalls) {
 		backgroundPanel.setLayout(null);
 		for (int i = 0; i < numberOfImages; i++) {
 			for (int j = 0; j < numberOfImages; j++) {
@@ -59,7 +60,8 @@ public class Playground {
 				backgroundPanel.add(field[i][j]);
 			}
 		}
-		FillUpWithWalls();
+		if (withWalls == true)
+			FillUpWithWalls();
 		return backgroundPanel;
 
 	}

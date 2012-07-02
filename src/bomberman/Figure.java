@@ -14,8 +14,8 @@ import javax.swing.JPanel;
  * Die Klasse repräsentiert die Spielerfigur. Klassenvariablen werden
  * initialisiert.
  * 
- * @author Natalie
- * @version 17/06/12
+ * @author Lukas
+ * @version 01/07/12
  */
 
 public class Figure extends JPanel {
@@ -24,6 +24,8 @@ public class Figure extends JPanel {
 	private int speed;
 	private Image picOfFigure;
 	private UpdateFigureThread figureThread;
+	private int BombCounter;
+	private int Firerange;
 
 	/**
 	 * Klassenkontruktor
@@ -38,6 +40,9 @@ public class Figure extends JPanel {
 		positionX = x;
 		positionY = y;
 		speed = 1;
+		BombCounter = 1;
+		Firerange = 1;
+
 		figureThread = new UpdateFigureThread(this);
 		if (c == 0) {
 			picOfFigure = Toolkit.getDefaultToolkit().getImage(
@@ -196,6 +201,26 @@ public class Figure extends JPanel {
 			return true;
 		}
 
+	}
+
+	public int getBombCounter() {
+		return BombCounter;
+	}
+
+	public void IncBombCounter() {
+		BombCounter += 1;
+	}
+
+	public int getFirerange() {
+		return Firerange;
+	}
+
+	public void IncFirerange() {
+		Firerange += 1;
+	}
+
+	public void CloseFigureThread() {
+		figureThread.interrupt();
 	}
 
 }

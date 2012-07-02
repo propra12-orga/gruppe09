@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
  * Die Klasse erschafft alle Felder, die vorkommen können.
  * 
  * @author Lukas
- * @version 17/06/12
+ * @version 01/07/12
  * 
  */
 public class SettingProperties {
@@ -31,6 +31,8 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setborder(false);
 		Playground.field[xPos][yPos].setBomb(false);
 		Playground.field[xPos][yPos].setExplosion(false);
+		Playground.field[xPos][yPos].setBombUp(false);
+		Playground.field[xPos][yPos].setFireUp(false);
 	}
 
 	/**
@@ -118,11 +120,6 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setExplosion(false);
 	}
 
-	/**
-	 * Initialisiert eine Bombe auf dem Spielfeld. 
-	 * @param xPos Position der Bombe auf der x-Achse.
-	 * @param yPos Position der Bombe auf der y-Achse.
-	 */
 	public static void bomb1(int xPos, int yPos) {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
@@ -135,11 +132,6 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setExplosion(false);
 	}
 
-	/**
-	 * Initialisert eine Explosion.
-	 * @param xPos Position der Explosion auf der x-Achse.
-	 * @param yPos Position der Explosion auf der y-Achse.
-	 */
 	public static void explosion(int xPos, int yPos) {
 		Playground.field[xPos][yPos].setIcon(new ImageIcon(Toolkit
 				.getDefaultToolkit().getImage(
@@ -150,5 +142,40 @@ public class SettingProperties {
 		Playground.field[xPos][yPos].setborder(false);
 		Playground.field[xPos][yPos].setBomb(false);
 		Playground.field[xPos][yPos].setExplosion(true);
+	}
+
+	public static void GadgetBombUp(int xPos, int yPos) {
+		Playground.field[xPos][yPos]
+				.setIcon(new ImageIcon(
+						Toolkit.getDefaultToolkit()
+								.getImage(
+										Playground.class
+												.getResource("grafics/map/bomb_up.png"))));
+		Playground.field[xPos][yPos].setaccessible(true);
+		Playground.field[xPos][yPos].setStargate(false);
+		Playground.field[xPos][yPos].setDestroyable(false);
+		Playground.field[xPos][yPos].setborder(false);
+		Playground.field[xPos][yPos].setBomb(false);
+		Playground.field[xPos][yPos].setExplosion(false);
+		Playground.field[xPos][yPos].setBombUp(true);
+
+	}
+
+	public static void GadgetFireUp(int xPos, int yPos) {
+		Playground.field[xPos][yPos]
+				.setIcon(new ImageIcon(
+						Toolkit.getDefaultToolkit()
+								.getImage(
+										Playground.class
+												.getResource("grafics/map/fire_up.png"))));
+		Playground.field[xPos][yPos].setaccessible(true);
+		Playground.field[xPos][yPos].setStargate(false);
+		Playground.field[xPos][yPos].setDestroyable(false);
+		Playground.field[xPos][yPos].setborder(false);
+		Playground.field[xPos][yPos].setBomb(false);
+		Playground.field[xPos][yPos].setExplosion(false);
+		Playground.field[xPos][yPos].setBombUp(false);
+		Playground.field[xPos][yPos].setFireUp(true);
+
 	}
 }

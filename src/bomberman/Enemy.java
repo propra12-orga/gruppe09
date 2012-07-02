@@ -7,11 +7,11 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /**
- * Die Klasse repräsentiert die Spielerfigur. Klassenvariablen werden
- * initialisiert.
+ * Die Klasse ist für die KI Gegner. Andere werden von der Enemy-Klasse beerbt
+ * 
  * 
  * @author Lukas
- * @version 25/06/12
+ * @version 01/07/12
  */
 
 public class Enemy extends JPanel {
@@ -88,9 +88,6 @@ public class Enemy extends JPanel {
 		positionY = y;
 	}
 
-	/**
-	 * Die Methode move steuert die Bewegungen des Spielers. 
-	 */
 	public void move() {
 		if (Direction == "Down") {
 			if (Playground.field[(positionX / 30)][(positionY / 30) + 1]
@@ -124,7 +121,7 @@ public class Enemy extends JPanel {
 
 	public String setDirection() {
 		int rand = (int) (Math.random() * 4) + 1;
-		System.out.println(rand);
+		// System.out.println(rand);
 		if (rand == 1)
 			return "Left";
 		else if (rand == 2)
@@ -138,6 +135,11 @@ public class Enemy extends JPanel {
 
 	public void startmoving() {
 		EnemyMoveThread.start();
+	}
+
+	public void stopthreads() {
+		EnemyMoveThread.interrupt();
+		figureThread.interrupt();
 	}
 
 }

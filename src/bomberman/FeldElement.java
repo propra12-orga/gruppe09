@@ -7,7 +7,7 @@ import javax.swing.JLabel;
  * Die Klasse initialisiert Feldelemente.
  * 
  * @author Lukas
- * @version 25/06/12
+ * @version 17/06/12
  * 
  */
 public class FeldElement extends JLabel {
@@ -19,6 +19,8 @@ public class FeldElement extends JLabel {
 	private boolean bomb = false; // Bombe
 	private boolean hiddenstargate = false; // verstecktes Portal
 	private boolean explosion = false; // Explosion
+	private boolean bombUp = false;
+	private boolean FireUp = false;
 
 	/**
 	 * Klassenkonstruktor. Initialisiert ein Bild auf einem Feld.
@@ -155,15 +157,28 @@ public class FeldElement extends JLabel {
 	public void setHiddenstargate(boolean hiddenstargate) {
 		this.hiddenstargate = hiddenstargate;
 	}
-	/**
-	 * Gibt das Zeichen zurück, was für ein Feldelement steht.
-	 * @return 
-	 */
+
 	public char getType() {
 		return Type;
 	}
 
 	public void setType(char type) {
 		Type = type;
+	}
+
+	public boolean isBombUp() {
+		return bombUp;
+	}
+
+	public void setBombUp(boolean bombUp) {
+		this.bombUp = bombUp;
+	}
+
+	public boolean isFireUp() {
+		return FireUp;
+	}
+
+	public void setFireUp(boolean fireUp) {
+		FireUp = fireUp;
 	}
 }

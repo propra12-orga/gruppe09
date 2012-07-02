@@ -13,19 +13,22 @@ import javax.swing.JPanel;
  * Die Klasse steuert die Figur(en).
  * 
  * @author Lukas
- * @version 25/06/12
+ * @version 01/07/12
  * 
  */
 public class MoveControl extends JPanel implements KeyListener {
 
 	private Figure figure1;
 	private Figure figure2;
+	private static int PlantedBombsPlayer1;
+
 	private stargate OpenWindow;
 	Timer timer = new Timer();
 
 	public MoveControl(Figure figure1, Figure figure2) {
 		this.figure1 = figure1;
 		this.figure2 = figure2;
+		setPlantedBombsPlayer1(0);
 		addKeyListener(this);
 
 	}
@@ -51,6 +54,20 @@ public class MoveControl extends JPanel implements KeyListener {
 						.getZeile()].isStargate()) {
 					EndGame.EndtheGame(true, false, false, false);
 				}
+				if (Playground.field[Playground.getSpalte() - 1][Playground
+						.getZeile()].isBombUp()) {
+					figure1.IncBombCounter();
+					Spielgui.UpdateBombCounter();
+					SettingProperties.grass(Playground.getSpalte() - 1,
+							Playground.getZeile());
+				}
+				if (Playground.field[Playground.getSpalte() - 1][Playground
+						.getZeile()].isFireUp()) {
+					figure1.IncFirerange();
+					Spielgui.UpdateFireCounter();
+					SettingProperties.grass(Playground.getSpalte() - 1,
+							Playground.getZeile());
+				}
 				figure1.move("left");
 				Playground.setSpalte(Playground.getSpalte() - 1);
 				System.out.print(Playground.getSpalte());
@@ -69,6 +86,23 @@ public class MoveControl extends JPanel implements KeyListener {
 						.getZeile()].isStargate()) {
 					EndGame.EndtheGame(true, false, false, false);
 				}
+
+				if (Playground.field[Playground.getSpalte() + 1][Playground
+						.getZeile()].isBombUp()) {
+					figure1.IncBombCounter();
+					Spielgui.UpdateBombCounter();
+					SettingProperties.grass(Playground.getSpalte() + 1,
+							Playground.getZeile());
+				}
+
+				if (Playground.field[Playground.getSpalte() + 1][Playground
+						.getZeile()].isFireUp()) {
+					figure1.IncFirerange();
+					Spielgui.UpdateFireCounter();
+					SettingProperties.grass(Playground.getSpalte() + 1,
+							Playground.getZeile());
+				}
+
 				figure1.move("right");
 				Playground.setSpalte(Playground.getSpalte() + 1);
 				System.out.print(Playground.getSpalte());
@@ -86,6 +120,21 @@ public class MoveControl extends JPanel implements KeyListener {
 				if (Playground.field[Playground.getSpalte()][Playground
 						.getZeile() - 1].isStargate()) {
 					EndGame.EndtheGame(true, false, false, false);
+				}
+
+				if (Playground.field[Playground.getSpalte()][Playground
+						.getZeile() - 1].isBombUp()) {
+					figure1.IncBombCounter();
+					Spielgui.UpdateBombCounter();
+					SettingProperties.grass(Playground.getSpalte(),
+							Playground.getZeile() - 1);
+				}
+				if (Playground.field[Playground.getSpalte()][Playground
+						.getZeile() - 1].isFireUp()) {
+					figure1.IncFirerange();
+					Spielgui.UpdateFireCounter();
+					SettingProperties.grass(Playground.getSpalte(),
+							Playground.getZeile() - 1);
 				}
 				figure1.move("up");
 				Playground.setZeile(Playground.getZeile() - 1);
@@ -106,6 +155,20 @@ public class MoveControl extends JPanel implements KeyListener {
 						.getZeile() + 1].isStargate()) {
 					EndGame.EndtheGame(true, false, false, false);
 				}
+				if (Playground.field[Playground.getSpalte()][Playground
+						.getZeile() + 1].isBombUp()) {
+					figure1.IncBombCounter();
+					Spielgui.UpdateBombCounter();
+					SettingProperties.grass(Playground.getSpalte(),
+							Playground.getZeile() + 1);
+				}
+				if (Playground.field[Playground.getSpalte()][Playground
+						.getZeile() + 1].isFireUp()) {
+					figure1.IncFirerange();
+					Spielgui.UpdateFireCounter();
+					SettingProperties.grass(Playground.getSpalte(),
+							Playground.getZeile() + 1);
+				}
 				figure1.move("down");
 				Playground.setZeile(Playground.getZeile() + 1);
 				System.out.print(Playground.getSpalte());
@@ -116,17 +179,20 @@ public class MoveControl extends JPanel implements KeyListener {
 			}
 
 			if (keyCode == KeyEvent.VK_Z) {
-				SaveLoad.Load(figure1);
+				SettingProperties.GadgetFireUp(5, 2);
 			}
 
 			if (keyCode == KeyEvent.VK_ENTER) {
 				if (!Playground.field[Playground.getSpalte()][Playground
-						.getZeile()].isStargate()) {
+						.getZeile()].isStargate()
+						&& PlantedBombsPlayer1 < figure1.getBombCounter()) {
 					SettingProperties.bomb1(Playground.getSpalte(),
 							Playground.getZeile());
 
-					timer.schedule(new BombTimer(2, Playground.getSpalte(),
-							Playground.getZeile()), 1500);
+					timer.schedule(new BombTimer(figure1.getFirerange(),
+							Playground.getSpalte(), Playground.getZeile()),
+							1500);
+					setPlantedBombsPlayer1(getPlantedBombsPlayer1() + 1);
 				}
 
 			}
@@ -224,6 +290,14 @@ public class MoveControl extends JPanel implements KeyListener {
 
 	public boolean isFocusTraversable() {
 		return true;
+	}
+
+	public static int getPlantedBombsPlayer1() {
+		return PlantedBombsPlayer1;
+	}
+
+	public static void setPlantedBombsPlayer1(int plantedBombsPlayer1) {
+		PlantedBombsPlayer1 = plantedBombsPlayer1;
 	}
 
 }

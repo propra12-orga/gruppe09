@@ -1,7 +1,3 @@
-/**
- * @author Dirk 
- * @version 09/06/12 Last Action: Es wird nun die Collision der Spielinternen grenzsteine unter initalize festgelegt
- */
 package bomberman;
 
 import java.awt.Container;
@@ -19,9 +15,10 @@ public class Bomberman {
 	static Figure figure1, figure2;
 	static Enemy Enemy;
 
-	static Gui gui;
+	static Spielgui gui;
 	static Container contentPane;
 	static Boolean Singleplayer, Multiplayer;
+	static Menue Main;
 	public static int numberOfFields = 9;// sollte immer ungerade sein
 
 	/**
@@ -30,21 +27,20 @@ public class Bomberman {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		gui = new Gui();
-		gui.setVisible(true);
+		Main = new Menue();
+		Main.setVisible(true);
+		Singleplayer = false;
+		Multiplayer = false;
+		gui = null;
+
 		figure1 = new Figure(30, 30, 0);
 		Enemy = new Enemy(30, 210);
 		figure2 = new Figure(270, 270, 1);
-		Singleplayer = false;
-		Multiplayer = false;
-
-		Container contentPane = gui.getContentPane();
-		contentPane.add(new MoveControl(figure1, figure2));
-
 	}
 
 	public static void InsertEnemys() {
-		gui.add(Enemy, 0);
+		if (Multiplayer != true)
+			gui.add(Enemy, 0);
 
 		gui.setVisible(true);
 	}
@@ -55,6 +51,12 @@ public class Bomberman {
 	 * 
 	 */
 	public static void starteSingleplayer() {
+		if (gui == null)
+			gui = new Spielgui();
+		gui.setVisible(true);
+
+		Container contentPane = gui.getContentPane();
+		contentPane.add(new MoveControl(figure1, figure2));
 		gui.setVisible(false);
 		gui.update(gui.getGraphics());
 		InsertEnemys();
@@ -63,18 +65,24 @@ public class Bomberman {
 		resetPosition();
 		Singleplayer = true;
 		gui.setVisible(true);
+
 	}
 
 	/**
 	 * Startet ein neues Spiel mit zwei Spielern.
 	 */
 	public static void starteMultiplayer() {
+		if (gui == null)
+			gui = new Spielgui();
+		gui.setVisible(true);
+
+		Container contentPane = gui.getContentPane();
+		contentPane.add(new MoveControl(figure1, figure2));
 		gui.setVisible(false);
 		gui.update(gui.getGraphics());
+		Multiplayer = true;
 		starteSingleplayer();
 		gui.add(figure2, 0);
-		Singleplayer = false;
-		Multiplayer = true;
 
 		resetPositions();
 
@@ -120,6 +128,33 @@ public class Bomberman {
 
 	public static Figure GetFigure1() {
 		return figure1;
+
+	}
+
+	public static Enemy GetEnemy() {
+		return Enemy;
+
+	}
+
+	public static void OpenMainMenu() {
+		Main.setVisible(true);
+
+	}
+
+	public static void CloseMainMenu() {
+		Main.setVisible(false);
+	}
+
+	public static void CloseGame() {
+
+		figure1.CloseFigureThread();
+		figure2.CloseFigureThread();
+		Enemy.stopthreads();
+		gui.dispose();
+
+		Singleplayer = false;
+		Multiplayer = false;
+		gui = null;
 
 	}
 }

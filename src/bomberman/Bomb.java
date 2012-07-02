@@ -5,6 +5,7 @@ import java.util.Timer;
 public class Bomb {
 	/**
 	 * Die Klasse Bombe erzeugt eine Bombe.
+	 * 
 	 * @author Lukas
 	 * @version 25/06/2012
 	 */
@@ -16,10 +17,14 @@ public class Bomb {
 	Timer timer = new Timer();
 
 	/**
-	 * Initialisiert eine neue Bombe mit folgenden Eingeschaften: 
-	 * @param rad Radius der Bombe.
-	 * @param xPos Position der Bombe auf der x-Achse.
-	 * @param yPos Position der Bombe auf der y-Achse.
+	 * Initialisiert eine neue Bombe mit folgenden Eingeschaften:
+	 * 
+	 * @param rad
+	 *            Radius der Bombe.
+	 * @param xPos
+	 *            Position der Bombe auf der x-Achse.
+	 * @param yPos
+	 *            Position der Bombe auf der y-Achse.
 	 * 
 	 */
 	public Bomb(int rad, int xPos, int yPos) {
@@ -31,10 +36,11 @@ public class Bomb {
 	}
 
 	/**
-	 * Führt eine Explosion aus. Eine Kettenreaktion der Bombenexplosionen ist möglich. Durchläuft alle Richtungen, 
-	 * oben, unten, rechts, links.
-	 * Wird einer von den Spielern getroffen, wird der Status des Selfkillplayers auf true gesetzt.
-	 * Spiel endet, wenn Spieler1 oder Spieler2 oder beide Spieler getötet werden.
+	 * Führt eine Explosion aus. Eine Kettenreaktion der Bombenexplosionen ist
+	 * möglich. Durchläuft alle Richtungen, oben, unten, rechts, links. Wird
+	 * einer von den Spielern getroffen, wird der Status des Selfkillplayers auf
+	 * true gesetzt. Spiel endet, wenn Spieler1 oder Spieler2 oder beide Spieler
+	 * getötet werden.
 	 */
 	public void explod() {
 		if (!Playground.field[xPos][yPos].isBomb())
@@ -56,6 +62,15 @@ public class Bomb {
 				if (Playground.field[x][yPos].isBomb()) {
 					new Bomb(rad, x, yPos).explod();
 					Playground.field[x][yPos].setBomb(false);
+				}
+				// Gucken ob die Ki von der Bombe getroffen wird
+				if ((x == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+						.GetEnemy().getPositionY() / 30)
+						|| (xPos == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+								.GetEnemy().getPositionY() / 30)) {
+					System.out.println("KI ist tot!");
+					Bomberman.GetEnemy().setVisible(false);
+					Bomberman.GetEnemy().stopthreads();
 				}
 				// Gucken ob Spieler1 getötet wird
 				if ((x == Playground.getSpalte() && yPos == Playground
@@ -92,6 +107,14 @@ public class Bomb {
 					new Bomb(rad, x, yPos).explod();
 					Playground.field[x][yPos].setBomb(false);
 				}
+				if ((x == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+						.GetEnemy().getPositionY() / 30)
+						|| (xPos == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+								.GetEnemy().getPositionY() / 30)) {
+					System.out.println("KI ist tot!");
+					Bomberman.GetEnemy().setVisible(false);
+					Bomberman.GetEnemy().stopthreads();
+				}
 				if ((x == Playground.getSpalte() && yPos == Playground
 						.getZeile())
 						|| (xPos == Playground.getSpalte() && yPos == Playground
@@ -124,6 +147,16 @@ public class Bomb {
 					new Bomb(rad, xPos, y).explod();
 					Playground.field[xPos][y].setBomb(false);
 				}
+
+				if ((xPos == Bomberman.GetEnemy().getPositionX() / 30 && y == Bomberman
+						.GetEnemy().getPositionY() / 30)
+						|| (xPos == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+								.GetEnemy().getPositionY() / 30)) {
+					System.out.println("KI ist tot!");
+					Bomberman.GetEnemy().setVisible(false);
+					Bomberman.GetEnemy().stopthreads();
+				}
+
 				if ((xPos == Playground.getSpalte() && y == Playground
 						.getZeile())
 						|| (xPos == Playground.getSpalte() && yPos == Playground
@@ -157,6 +190,15 @@ public class Bomb {
 					new Bomb(rad, xPos, y).explod();
 					Playground.field[xPos][y].setBomb(false);
 				}
+
+				if ((xPos == Bomberman.GetEnemy().getPositionX() / 30 && y == Bomberman
+						.GetEnemy().getPositionY() / 30)
+						|| (xPos == Bomberman.GetEnemy().getPositionX() / 30 && yPos == Bomberman
+								.GetEnemy().getPositionY() / 30)) {
+					System.out.println("KI ist tot!");
+					Bomberman.GetEnemy().setVisible(false);
+					Bomberman.GetEnemy().stopthreads();
+				}
 				if ((xPos == Playground.getSpalte() && y == Playground
 						.getZeile())
 						|| (xPos == Playground.getSpalte() && yPos == Playground
@@ -177,6 +219,9 @@ public class Bomb {
 			}
 			y--;
 		}
+
+		MoveControl
+				.setPlantedBombsPlayer1(MoveControl.getPlantedBombsPlayer1() - 1);
 
 		if ((SelfkillPlayer1 == true) && (SelfkillPlayer2 == true)) {
 			EndGame.EndtheGame(false, false, false, true);
