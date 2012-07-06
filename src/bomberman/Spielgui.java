@@ -185,7 +185,6 @@ public class Spielgui extends JFrame {
 	}
 
 	protected void LoadMenuItemActionPerformed(ActionEvent evt) {
-		Bomberman.starteSingleplayer();
 		SaveLoad.Load(Bomberman.GetFigure1());
 
 	}
@@ -195,24 +194,7 @@ public class Spielgui extends JFrame {
 
 	}
 
-	private ImageIcon createImage(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private void singleplayerMenuItemActionPerformed(ActionEvent evt) {
-		Bomberman.starteSingleplayer();
-	}
-
-	private void multiplayerMenuItemActionPerformed(ActionEvent evt) {
-		Bomberman.starteMultiplayer();
-	}
-
 	private void optionsMenuItem1ActionPerformed(ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
-	private void highscoreMenuItemActionPerformed(ActionEvent evt) {
 		// TODO add your handling code here:
 	}
 

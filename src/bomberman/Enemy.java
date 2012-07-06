@@ -3,6 +3,7 @@ package bomberman;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.Timer;
 
 import javax.swing.JPanel;
 
@@ -22,6 +23,7 @@ public class Enemy extends JPanel {
 	private EnemyUpdateThread figureThread;
 	private MoveEnemyThread EnemyMoveThread;
 	private String Direction;
+	Timer timer = new Timer();
 
 	/**
 	 * Klassenkontruktor
@@ -93,6 +95,13 @@ public class Enemy extends JPanel {
 			if (Playground.field[(positionX / 30)][(positionY / 30) + 1]
 					.isaccessible()) {
 				positionY += 30;
+				if (Playground.field[(positionX / 30)][(positionY / 30) + 1]
+						.isDestroyable()) {
+					SettingProperties.bomb1((positionX / 30), (positionY / 30));
+
+					timer.schedule(new BombTimer(1, (positionX / 30),
+							(positionY / 30)), 1500);
+				}
 			} else
 				Direction = setDirection();
 		}
@@ -101,20 +110,77 @@ public class Enemy extends JPanel {
 			if (Playground.field[(positionX / 30)][(positionY / 30) - 1]
 					.isaccessible()) {
 				positionY -= 30;
+				if (Playground.field[(positionX / 30)][(positionY / 30 - 1)]
+						.isDestroyable()) {
+					SettingProperties.bomb1((positionX / 30), (positionY / 30));
+
+					timer.schedule(new BombTimer(1, (positionX / 30),
+							(positionY / 30)), 1500);
+
+					FleeFromBomb(1, positionX / 30, positionY / 30);
+				}
+				if ((positionX) == Bomberman.GetFigure1().getPositionX()
+						&& ((positionY - 30) == Bomberman.GetFigure1()
+								.getPositionX())) {
+					SettingProperties.bomb1((positionX / 30), (positionY / 30));
+
+					timer.schedule(new BombTimer(1, (positionX / 30),
+							(positionY / 30)), 1500);
+
+					FleeFromBomb(1, positionX / 30, positionY / 30);
+				}
 			} else
 				Direction = setDirection();
 		} else if (Direction == "Left") {
 			if (Playground.field[(positionX / 30) - 1][(positionY / 30)]
 					.isaccessible()) {
 				positionX -= 30;
+				if (Playground.field[(positionX / 30 - 1)][(positionY / 30)]
+						.isDestroyable()) {
+					SettingProperties.bomb1((positionX / 30), (positionY / 30));
+
+					timer.schedule(new BombTimer(1, (positionX / 30),
+							(positionY / 30)), 1500);
+
+					FleeFromBomb(1, positionX / 30, positionY / 30);
+				}
 			} else
 				Direction = setDirection();
 		} else if (Direction == "Right") {
 			if (Playground.field[(positionX / 30) + 1][(positionY / 30)]
 					.isaccessible()) {
 				positionX += 30;
+				if (Playground.field[(positionX / 30 + 1)][(positionY / 30)]
+						.isDestroyable()) {
+					SettingProperties.bomb1((positionX / 30), (positionY / 30));
+
+					timer.schedule(new BombTimer(1, (positionX / 30),
+							(positionY / 30)), 1500);
+
+					FleeFromBomb(1, positionX / 30, positionY / 30);
+				}
 			} else
 				Direction = setDirection();
+		}
+
+	}
+
+	private void FleeFromBomb(int rad, int posX, int posY) {
+
+		if ((Playground.field[(positionX / 30)][(positionY / 30) + 1]
+				.isaccessible())) {
+			Direction = "Down";
+
+		} else if ((Playground.field[(positionX / 30)][(positionY / 30) - 1]
+				.isaccessible())) {
+			Direction = "Up";
+
+		} else if ((Playground.field[(positionX / 30) + 1][positionY / 30]
+				.isaccessible())) {
+			Direction = "Right";
+		} else if ((Playground.field[(positionX / 30) - 1][positionY / 30]
+				.isaccessible())) {
+			Direction = "Left";
 		}
 
 	}
@@ -122,14 +188,25 @@ public class Enemy extends JPanel {
 	public String setDirection() {
 		int rand = (int) (Math.random() * 4) + 1;
 		// System.out.println(rand);
-		if (rand == 1)
-			return "Left";
-		else if (rand == 2)
-			return "Right";
-		else if (rand == 3)
-			return "Up";
-		else
+		if (((Playground.field[(positionX / 30) - 1][(positionY / 30)]
+				.isaccessible()))) {
+			if ((rand == 1))
+				return "Left";
+		}
+		if (Playground.field[(positionX / 30) + 1][(positionY / 30)]
+				.isaccessible()) {
+			if (rand == 2)
+				return "Right";
+		}
+		if (Playground.field[(positionX / 30)][(positionY / 30) - 1]
+				.isaccessible()) {
+			if ((rand == 3))
+				return "Up";
+		} else if (Playground.field[(positionX / 30)][(positionY / 30) + 1]
+				.isaccessible())
 			return "Down";
+
+		return "Up";
 
 	}
 

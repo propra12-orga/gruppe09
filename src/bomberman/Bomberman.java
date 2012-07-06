@@ -31,11 +31,11 @@ public class Bomberman {
 		Main.setVisible(true);
 		Singleplayer = false;
 		Multiplayer = false;
-		gui = null;
 
 		figure1 = new Figure(30, 30, 0);
 		Enemy = new Enemy(30, 210);
 		figure2 = new Figure(270, 270, 1);
+
 	}
 
 	public static void InsertEnemys() {
@@ -51,17 +51,18 @@ public class Bomberman {
 	 * 
 	 */
 	public static void starteSingleplayer() {
-		if (gui == null)
-			gui = new Spielgui();
-		gui.setVisible(true);
-
+		gui = new Spielgui();
+		gui.setVisible(false);
 		Container contentPane = gui.getContentPane();
 		contentPane.add(new MoveControl(figure1, figure2));
+		gui.setVisible(true);
+
 		gui.setVisible(false);
 		gui.update(gui.getGraphics());
 		InsertEnemys();
 		gui.add(figure1, 0);
 		Enemy.startmoving();
+		resetPosition();
 		resetPosition();
 		Singleplayer = true;
 		gui.setVisible(true);
@@ -150,11 +151,10 @@ public class Bomberman {
 		figure1.CloseFigureThread();
 		figure2.CloseFigureThread();
 		Enemy.stopthreads();
-		gui.dispose();
+		gui.setVisible(false);
 
 		Singleplayer = false;
 		Multiplayer = false;
-		gui = null;
 
 	}
 }
