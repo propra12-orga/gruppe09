@@ -9,18 +9,26 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-public class Spielgui extends JFrame {
+public class Spielgui extends JFrame implements WindowListener, KeyListener {
 
 	// Variablen Deklarationen
 	private JMenuBar menuBar;
@@ -43,12 +51,26 @@ public class Spielgui extends JFrame {
 	private JLabel FirePic;
 	private static JLabel FireCounter;
 
+	private static JTextArea taAusgabe;
+	private JTextField tfEingabe;
+
+	private JButton Send;
+
 	private JPanel backgroundPanel;
+
+	private ChatClient client;
 
 	// Ende der Variablen Deklarationen
 	public Spielgui() {
+
 		super("Bomberman");
-		setSize(470, 450);
+		String eingabe = "";
+		if (Bomberman.IsMultiplayer() == false)
+			setSize(470, 450);
+		else {
+			setSize(470, 570);
+
+		}
 		initComponents();
 	}
 
@@ -176,7 +198,36 @@ public class Spielgui extends JFrame {
 		FireCounter.setBounds(355, 129, getWidth(), 60);
 		add(FireCounter);
 
-		backgroundPanel.setBackground(Color.white);
+		if (Bomberman.IsMultiplayer()) {
+
+			taAusgabe = new JTextArea();
+			taAusgabe.setBounds(0, 350, 350, 150);
+			taAusgabe.setEditable(false);
+			add(taAusgabe);
+
+			tfEingabe = new JTextField();
+			tfEingabe.setBounds(0, 500, 350, 20);
+			tfEingabe.addKeyListener(this);
+			add(tfEingabe);
+
+			try {
+				String eingabe = JOptionPane.showInputDialog(null,
+						"Geben Sie Ihren Namen ein",
+						"Eine Eingabeaufforderung", JOptionPane.PLAIN_MESSAGE);
+				client = new ChatClient(eingabe, "localhost", 1100);
+			} catch (Exception ausnahme) {
+				ausnahme.printStackTrace();
+			}
+
+			Send = new JButton("Senden");
+			Send.setBounds(360, 500, 100, 20);
+			Send.addActionListener(new ButtonSend());
+			add(Send);
+		}
+
+		addWindowListener(this);
+
+		backgroundPanel.setBackground(Color.green);
 		backgroundPanel.setBounds(0, 0, getWidth(), getHeight());
 
 		backgroundPanel = Playground.createPlayground(backgroundPanel, true);
@@ -220,4 +271,76 @@ public class Spielgui extends JFrame {
 		FireCounter.setText("Feuerkraft : "
 				+ Bomberman.GetFigure1().getFirerange());
 	}
+
+	public static void schreib(String text) {
+		taAusgabe.append(text + "\n");
+	}
+
+	public void keyPressed(KeyEvent ereignis) {
+		if (ereignis.getKeyCode() == KeyEvent.VK_ENTER) {
+			client.zumServerSenden(tfEingabe.getText());
+			tfEingabe.setText("");
+		}
+	}
+
+	class ButtonSend implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			client.zumServerSenden(tfEingabe.getText());
+			tfEingabe.setText("");
+
+		}
+	}
+
+	public void windowClosing(WindowEvent e) {
+		client.trennen();
+	}
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

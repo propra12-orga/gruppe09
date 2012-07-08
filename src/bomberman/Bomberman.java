@@ -19,6 +19,7 @@ public class Bomberman {
 	static Container contentPane;
 	static Boolean Singleplayer, Multiplayer;
 	static Menue Main;
+	static ChatClient client;
 	public static int numberOfFields = 9;// sollte immer ungerade sein
 
 	/**
@@ -45,12 +46,18 @@ public class Bomberman {
 		gui.setVisible(true);
 	}
 
+	public static void InsertFigure1() {
+		gui.add(figure1, 0);
+		gui.setVisible(true);
+	}
+
 	/**
 	 * Startet ein neues Spiel mit einem Spieler. Es wird zuerst eine Figur
 	 * hinzugefügt und ihre Position ermittelt, bevor die Gui aufgebaut wird.
 	 * 
 	 */
 	public static void starteSingleplayer() {
+		Singleplayer = true;
 		gui = new Spielgui();
 		gui.setVisible(false);
 		Container contentPane = gui.getContentPane();
@@ -64,7 +71,7 @@ public class Bomberman {
 		Enemy.startmoving();
 		resetPosition();
 		resetPosition();
-		Singleplayer = true;
+
 		gui.setVisible(true);
 
 	}
@@ -73,6 +80,7 @@ public class Bomberman {
 	 * Startet ein neues Spiel mit zwei Spielern.
 	 */
 	public static void starteMultiplayer() {
+		Multiplayer = true;
 		if (gui == null)
 			gui = new Spielgui();
 		gui.setVisible(true);
@@ -80,12 +88,12 @@ public class Bomberman {
 		Container contentPane = gui.getContentPane();
 		contentPane.add(new MoveControl(figure1, figure2));
 		gui.setVisible(false);
-		gui.update(gui.getGraphics());
-		Multiplayer = true;
-		starteSingleplayer();
-		gui.add(figure2, 0);
 
-		resetPositions();
+		gui.update(gui.getGraphics());
+
+		InsertFigure1();
+		gui.add(figure2, 0);
+		Enemy.stopthreads();
 
 		gui.setVisible(true);
 	}
@@ -135,6 +143,10 @@ public class Bomberman {
 	public static Enemy GetEnemy() {
 		return Enemy;
 
+	}
+
+	public static ChatClient GetClient() {
+		return client;
 	}
 
 	public static void OpenMainMenu() {
